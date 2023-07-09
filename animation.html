@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Animation</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="animation-name"></h1>
+  <button onclick="goBack()">Back</button>
+  <canvas id="animation-canvas" width="600" height="400"></canvas>
+
+  <script>
+    const animationNameElement = document.getElementById('animation-name');
+    const canvasElement = document.getElementById('animation-canvas');
+    const ctx = canvasElement.getContext('2d');
+
+    animationNameElement.innerText = window.animationName;
+
+    if (window.animationName === 'Animation 1') {
+      // Animation 1 logic
+      ctx.fillStyle = '#FF0000';
+      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    } else if (window.animationName === 'Animation 2') {
+      // Animation 2 logic
+      ctx.fillStyle = '#00FF00';
+      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    } else if (window.animationName === 'Animation 3') {
+      // Animation 3 logic
+      ctx.fillStyle = '#0000FF';
+      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    } else if (window.animationName === 'Animation 4') {
+      // Animation 3 logic
+      ctx.fillStyle = '#FFFF00';
+      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+    }
+    function goBack() {
+      window.close()
+    }
+    // Add more else if statements for additional animations
+  </script>
+</body>
+</html>
