@@ -20,11 +20,13 @@ The app is available for free on GitHub.
 
 ## Install & run
 
-1. ``` git clone https://github.com/hunterjreid/Photolithography-101```
-2. ``` cd Photolithography-101```
-3. ``` npm install```
-4. ``` npm start```
-4. ``` Get to learning about Photolithography 📲 📞 📟 📠 🔋 🔌💻```
+1.  ```git clone https://github.com/hunterjreid/Photolithography-101```
+2.  ```cd Photolithography-101```
+3.  ```npm install```
+4.  ```npm start```
+5.  ```Get to learning about Photolithography 📲 📞 📟 📠 🔋 🔌💻```
 
 
 ![dqdqdqwd](https://github.com/hunterjreid/Photolithography-101/assets/62681404/ec6635c8-ba2a-496f-a613-387e767b8c99)
+![SQWDWQDQDWQWD](https://github.com/hunterjreid/Photolithography-101/assets/62681404/0e0b9e84-3201-4861-bc64-a2b9907b5289)
+![DQDWQDQWDQW](https://github.com/hunterjreid/Photolithography-101/assets/62681404/6a8fc200-9689-448f-bd4c-3ff3e5c2a503)
