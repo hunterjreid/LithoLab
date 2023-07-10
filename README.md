@@ -4,6 +4,9 @@
 lithography explained built in electron.js
 
 
+ Photolithography is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). Physcis doesn't really make sense at this scale so this app is built to explain how it works from the basics 
+
+
 ## run
 
 ``` npm build  ```
