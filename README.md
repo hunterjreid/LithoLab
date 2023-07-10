@@ -23,3 +23,8 @@ The app is available for free on GitHub.
 3. ``` npm install      ```
 4. ``` npm instart || electron .  ```
 4. ``` Get to learning about Photolithography  ```
+
+
+![dqdqdqwd](https://github.com/hunterjreid/Photolithography-101/assets/62681404/ec6635c8-ba2a-496f-a613-387e767b8c99)
+![dqwdwqdwdwqw](https://github.com/hunterjreid/Photolithography-101/assets/62681404/efe26a9f-3011-43d9-a903-effdab8f44cf)
+![dqwdqqdwqdw](https://github.com/hunterjreid/Photolithography-101/assets/62681404/65515c76-2d93-4ddf-8a3f-d220758687a4)
