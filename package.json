@@ -3,11 +3,12 @@
     "version": "1.0.0",
     "main": "main.js",
     "devDependencies": {
-      "electron": "^16.0.0"
+        "electron": "^16.0.0"
     },
     "scripts": {
         "start": "electron ."
-      }
-    
-    
-  }
+    },
+    "dependencies": {
+        "three": "^0.154.0"
+    }
+}

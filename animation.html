@@ -28,34 +28,155 @@
   <button onclick="goBack()">Back</button>
   <canvas id="animation-canvas" width="600" height="400"></canvas>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <script>
     const animationNameElement = document.getElementById('animation-name');
     const canvasElement = document.getElementById('animation-canvas');
-    const ctx = canvasElement.getContext('2d');
 
     animationNameElement.innerText = window.animationName;
 
     if (window.animationName === 'Animation 1') {
       // Animation 1 logic
-      ctx.fillStyle = '#FF0000';
-      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+      renderer.setSize(canvasElement.width, canvasElement.height);
+
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
     } else if (window.animationName === 'Animation 2') {
       // Animation 2 logic
-      ctx.fillStyle = '#00FF00';
-      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+      renderer.setSize(canvasElement.width, canvasElement.height);
+
+      for (let i = 0; i < 100; i++) {
+        const geometry = new THREE.BoxGeometry();
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const cube = new THREE.Mesh(geometry, material);
+        cube.position.x = Math.random() * 10 - 5;
+        cube.position.y = Math.random() * 10 - 5;
+        cube.position.z = Math.random() * 10 - 5;
+        scene.add(cube);
+      }
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        scene.rotation.x += 0.01;
+        scene.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
     } else if (window.animationName === 'Animation 3') {
       // Animation 3 logic
-      ctx.fillStyle = '#0000FF';
-      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+      renderer.setSize(canvasElement.width, canvasElement.height);
+
+      for (let i = 0; i < 100; i++) {
+        const geometry = new THREE.CircleGeometry(0.5, 32);
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const circle = new THREE.Mesh(geometry, material);
+        circle.position.x = Math.random() * 10 - 5;
+        circle.position.y = Math.random() * 10 - 5;
+        circle.position.z = Math.random() * 10 - 5;
+        scene.add(circle);
+      }
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        scene.rotation.x += 0.01;
+        scene.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
     } else if (window.animationName === 'Animation 4') {
-      // Animation 3 logic
-      ctx.fillStyle = '#FFFF00';
-      ctx.fillRect(0, 0, canvasElement.width, canvasElement.height);
+      // Animation 4 logic
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+      renderer.setSize(canvasElement.width, canvasElement.height);
+
+      const geometry = new THREE.BoxGeometry();
+      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+      const cube = new THREE.Mesh(geometry, material);
+      scene.add(cube);
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    } else if (window.animationName === 'Animation 5') {
+      // Animation 5 logic
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+      renderer.setSize(canvasElement.width, canvasElement.height);
+
+      const fontLoader = new THREE.FontLoader();
+      fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+        const geometry = new THREE.TextGeometry('Hello, World!', {
+          font: font,
+          size: 1,
+          height: 0.2,
+        });
+        const material = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+        const text = new THREE.Mesh(geometry, material);
+        scene.add(text);
+      });
+
+      camera.position.z = 5;
+
+      function animate() {
+        requestAnimationFrame(animate);
+
+        scene.rotation.x += 0.01;
+        scene.rotation.y += 0.01;
+
+        renderer.render(scene, camera);
+      }
+
+      animate();
     }
+
     function goBack() {
-      window.close()
+      window.close();
     }
-    // Add more else if statements for additional animations
   </script>
 </body>
 </html>
