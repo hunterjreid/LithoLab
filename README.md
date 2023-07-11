@@ -1,4 +1,4 @@
-<img width="1470" alt="digger-opensource-gitops-banner" src="https://github.com/diggerhq/digger/assets/1280498/7fb44db3-38ca-4021-8714-87a2f1a14982">
+<img width="1470" alt="dqwdwqqwddqw" src="https://github.com/hunterjreid/Photolithography-101/assets/62681404/6f779b8a-2944-4f5e-b09e-ed645435a06e">
 
 <h2 align="center">
   <a href="https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q">EN</a> |
@@ -14,6 +14,7 @@ Lithography Experimental App Explained in Electron.js
 Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.
 
 # Intro 
+
 
 
 This app runs terraform as an .exe or on any desktop app.  This experimental app, built in Electron.js, is designed to explain lithography from the basics. It uses a simple simulation to show how light and electrons interact with materials at the nanoscale. 
