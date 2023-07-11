@@ -36,29 +36,92 @@
     animationNameElement.innerText = window.animationName;
 
     if (window.animationName === 'Animation 1') {
-      // Animation 1 logic
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
-      renderer.setSize(canvasElement.width, canvasElement.height);
+        const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+renderer.setSize(canvasElement.width, canvasElement.height);
 
-      const geometry = new THREE.BoxGeometry();
-      const material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-      const cube = new THREE.Mesh(geometry, material);
-      scene.add(cube);
+const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
+const sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+scene.add(sphere);
 
-      camera.position.z = 5;
+const light1 = new THREE.PointLight(0xff0000, 1, 10);
+light1.position.set(-2, 0, 2);
+scene.add(light1);
 
-      function animate() {
-        requestAnimationFrame(animate);
+const light2 = new THREE.PointLight(0x00ff00, 1, 10);
+light2.position.set(2, 0, 2);
+scene.add(light2);
 
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+const light3 = new THREE.PointLight(0x0000ff, 1, 10);
+light3.position.set(0, 0, -2);
+scene.add(light3);
 
-        renderer.render(scene, camera);
+camera.position.z = 5;
+
+// Function to generate a random color
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+// Function to create a laser beam
+function createLaserBeam() {
+  const beamGeometry = new THREE.CylinderGeometry(0.05, 0.05, 3, 32);
+  const beamMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, emissive: 0xff0000 });
+  const beam = new THREE.Mesh(beamGeometry, beamMaterial);
+  beam.position.set(0, 0, -2);
+  scene.add(beam);
+
+  return beam;
+}
+
+// Event listener for click events on the canvas
+canvasElement.addEventListener('click', () => {
+  light1.color.set(getRandomColor());
+  light2.color.set(getRandomColor());
+  light3.color.set(getRandomColor());
+
+  const laserBeam = createLaserBeam();
+  const destinationZ = -50;
+  const velocityZ = -0.2;
+
+  function animateLaser() {
+    if (laserBeam.position.z > destinationZ) {
+      laserBeam.position.z += velocityZ;
+
+      // Check collision with screen edges
+      if (Math.abs(laserBeam.position.x) >= canvasElement.width / 200) {
+        laserBeam.position.x -= velocityZ * 10;
+      }
+      if (Math.abs(laserBeam.position.y) >= canvasElement.height / 200) {
+        laserBeam.position.y -= velocityZ * 10;
       }
 
-      animate();
+      requestAnimationFrame(animateLaser);
+    } else {
+      scene.remove(laserBeam);
+    }
+  }
+
+  animateLaser();
+});
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  sphere.rotation.x += 0.01;
+  sphere.rotation.y += 0.01;
+
+  renderer.render(scene, camera);
+}
+
+animate();
     } else if (window.animationName === 'Animation 2') {
       // Animation 2 logic
       const scene = new THREE.Scene();
@@ -172,11 +235,31 @@
       }
 
       animate();
+    }else if (window.animationName === 'Animation 6') {
+        const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, canvasElement.width / canvasElement.height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: canvasElement });
+renderer.setSize(canvasElement.width, canvasElement.height);
+
+// Load the 3D model using AR Quick Look
+const modelUrl = 'CHIPSET_001.usdz';
+const modelViewer = new THREE.ARQuickLook();
+modelViewer.setUrl(modelUrl);
+modelViewer.setCamera(camera);
+modelViewer.setRenderer(renderer);
+
+function animate() {
+  requestAnimationFrame(animate);
+  modelViewer.update();
+  renderer.render(scene, camera);
+}
+animate();
     }
+
 
     function goBack() {
       window.close();
-    }
+    } 
   </script>
 </body>
 </html>
