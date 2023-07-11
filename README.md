@@ -75,17 +75,7 @@ Not sure where to get started? You can:
 -   [Book a free, non-pressure pairing session / code walkthrough with one of our teammates](https://calendly.com/diggerdev/digger-pro-demo-clone)!
 -   Join our <a href="https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q">Slack</a>, and ask us any questions there.
 
-
-## Resources
-
-- [Docs](https://docs.digger.dev/) for comprehensive documentation and guides
-- [Slack](https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q) for discussion with the community and Infisical team.
-- [GitHub](https://github.com/diggerhq/digger) for code, issues, and pull request
-- [Medium](https://medium.com/@DiggerHQ) for terraform automation and collaboration insights, articles, tutorials, and updates.
-- [Roadmap](https://diggerdev.notion.site/Digger-Roadmap-845a90fb17954afca80431580e1b3958?pvs=4) for planned features
-
-
-![dqwdwqdqwdwdqwdq](https://github.com/hunterjreid/Photolithography-101/assets/62681404/377329c8-195d-43b6-b0e5-a57326a26a7c)
-
-# Photolithography-101
-
+## Ref
+https://en.wikipedia.org/wiki/Photolithography
+https://en.wikipedia.org/wiki/Ultraviolet
+https://en.wikipedia.org/wiki/Extreme_ultraviolet_lithography
