@@ -75,7 +75,7 @@ Not sure where to get started? You can:
 -   [Book a free, non-pressure pairing session / code walkthrough with one of our teammates](https://calendly.com/diggerdev/digger-pro-demo-clone)!
 -   Join our <a href="https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q">Slack</a>, and ask us any questions there.
 
-## Ref
-https://en.wikipedia.org/wiki/Photolithography
-https://en.wikipedia.org/wiki/Ultraviolet
-https://en.wikipedia.org/wiki/Extreme_ultraviolet_lithography
+## Ref  
+https://en.wikipedia.org/wiki/Photolithography  
+https://en.wikipedia.org/wiki/Ultraviolet  
+https://en.wikipedia.org/wiki/Extreme_ultraviolet_lithography  
