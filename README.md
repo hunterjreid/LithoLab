@@ -15,48 +15,30 @@ Photolithography is a process used to create patterns on the surface of a materi
 
 # Intro 
 
-
-
 This app runs terraform as an .exe or on any desktop app.  This experimental app, built in Electron.js, is designed to explain lithography from the basics. It uses a simple simulation to show how light and electrons interact with materials at the nanoscale. 
 
 The app is still under development, but it is already a valuable resource for anyone who wants to learn more about lithography. It is also a great tool for students and researchers who are working on nanoscale applications.  
 
-Here are some additional details about the app:  
-
-The app is written in JavaScript and Electron.js.  
-The simulation uses the raytracing library Three.js.  
-
-The app is available for free on GitHub.  
-
-
-
-
-## Features
-- Terraform plan and apply in pull request comments
-- Any VCS - Github, Gitlab, Azure Repos, etc
-- Any CI - Github Actions, Gitlab, Azure DevOps, etc
-- Any cloud provider - AWS, GCP, Azure
-- Private runners - thanks to the fact that there are no separate runners! Your existing CI's compute environment is used
-- Open Policy Agent (OPA) support for RBAC
-- PR-level locks (on top of Terraform native state locks, similar to Atlantis) to avoid race conditions across multiple PRs
-- Terragrunt, Workspaces, multiple Terraform versions, static analysis via Checkov, plan persistence, ...
-- Drift detection - coming soon
-- Cost estimation - coming soon
-
-## Getting Started
-
-- [Github Actions + AWS](https://docs.digger.dev/getting-started/github-actions-+-aws)
-- [Github Actions + GCP](https://docs.digger.dev/getting-started/github-actions-and-gcp)
-- [Gitlab Pipelines + AWS](https://docs.digger.dev/getting-started/gitlab-pipelines-+-aws)
-- [Azure DevOps](https://docs.digger.dev/getting-started/azure-devops)
-
 ## How it works
 
-Digger has 2 main components:
-- CLI that runs inside your CI and calls terraform with the right arguments
-- Orchestrator - a minimal backend (that can also be self-hosted) that triggers CI jobs in response to events such as PR comments
+LearnPhotolithography has 2 main components:
+- A lessons screen that goes over how photolithography works including DUV and EUV methods to create microchips
+- A lesson detail screen where you can see each animation with an explaintion including any relaventant graphs
 
-Digger also stores PR-level locks and plan cache in your cloud account (DynamoDB + S3 on AWS, equivalents in other cloud providers)
+## Stack:    
+
+- The app LearnPhotolithography is written in JavaScript and Electron.js. and is aviable for Windows, macOS, and Linux
+- The simulation uses the raytracing library Three.js.    
+
+## Features
+- Bilingual Resources: EN & ES 🌍🎓
+- Nanoscale Litho Simulations 🔬🔄
+- Dummifed text for rookies but yet indetais
+
+
+## Getting Started
+- [How To Install](https://docs.digger.dev/getting-started/github-actions-+-aws)
+- [How To Add Lesson](https://docs.digger.dev/getting-started/github-actions-and-gcp)
 
 ## Install & run
 
@@ -69,11 +51,7 @@ Digger also stores PR-level locks and plan cache in your cloud account (DynamoDB
 ## Contributing
 
 We love contributions. Check out our [contribiting guide](CONTRIBUTING.md) to get started. 
-
-Not sure where to get started? You can:
-
--   [Book a free, non-pressure pairing session / code walkthrough with one of our teammates](https://calendly.com/diggerdev/digger-pro-demo-clone)!
--   Join our <a href="https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q">Slack</a>, and ask us any questions there.
+💗
 
 ## Ref  
 https://en.wikipedia.org/wiki/Photolithography  
