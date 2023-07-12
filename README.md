@@ -1,5 +1,5 @@
 
-<img width="1470" alt="wwsdwqdwqwdqwqd" src="https://github.com/hunterjreid/LearnPhotolithography/assets/62681404/8d447382-ec70-4202-920e-20f3e97acbe2">
+<img wid<img width="1470" alt="wqddqwqwdwdqq" src="https://github.com/hunterjreid/LearnPhotolithography/assets/62681404/1471e04d-30f7-4ee9-8a69-3180e366598b">
 
 <h2 align="center">
   <a href="https://join.slack.com/t/diggertalk/shared_invite/zt-1tocl4w0x-E3RkpPiK7zQkehl8O78g8Q">EN</a> |
