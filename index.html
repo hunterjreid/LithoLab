@@ -18,6 +18,10 @@
       text-align: center;
     }
 
+    .title-bar {
+  background-color: #FF0000 !important;
+}
+
     button {
       width: 150px;
       height: 50px;
@@ -26,10 +30,21 @@
     }
   </style>
 </head>
+<div>
+    <label for="language">Select a language:</label>
+    <select id="language" onchange="changeLanguage()">
+      <option value="english">English</option>
+      <option value="spanish">Spanish</option>
+    </select>
+  </div>
+  <br>
 <body>
   <h1>Photolithography 101</h1>
-  
-  <button onclick="openAnimation('Animation 1')">View Animation 1</button>
+
+
+
+  <button onclick="openLesson1()">Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</button>
+  <button onclick="openLesson2()">Lesson 2: Optical Lithography Fundamentals</button>
   <button onclick="openAnimation('Animation 2')">View Animation 2</button>
   <button onclick="openAnimation('Animation 3')">View Animation 3</button>
   <button onclick="openAnimation('Animation 4')">View Animation 4</button>
@@ -41,6 +56,31 @@
   <button onclick="openAnimation('Animation 10')">View Animation 10</button>
 
   <script>
+    function changeLanguage() {
+      const languageDropdown = document.getElementById('language');
+      const selectedLanguage = languageDropdown.value;
+
+      // You can add code here to handle the selected language
+      // For example, you can use JavaScript to change the text on the buttons or load different content based on the language.
+      if (selectedLanguage === 'english') {
+        // English language selected
+        console.log('Selected language: English');
+      } else if (selectedLanguage === 'spanish') {
+        // Spanish language selected
+        console.log('Selected language: Spanish');
+      }
+    }
+
+    function openLesson1(animationName) {
+      const animationWindow = window.open('lessons/lesson1.html', '_blank', 'width=800,height=600');
+      animationWindow.animationName = animationName;
+    }
+
+    function openLesson2(animationName) {
+      const animationWindow = window.open('lessons/lesson2.html', '_blank', 'width=800,height=600');
+      animationWindow.animationName = animationName;
+    }
+
     function openAnimation(animationName) {
       const animationWindow = window.open('animation.html', '_blank', 'width=800,height=600');
       animationWindow.animationName = animationName;

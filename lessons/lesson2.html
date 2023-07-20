@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Optical Lithography Fundamentals</title>
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1px;
+      justify-items: center;
+      align-items: end;
+      background-color: #4d4d4d;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    /* Additional styles for the animation container */
+    #animation-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    #animation-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #animation-canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 2: Optical Lithography Fundamentals</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Optical Lithography Simulation</h2>
+    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <button onclick="goBack()">Back</button>
+    <strong>Step 1: Wafer Preparation</strong><br>
+    A silicon wafer is thoroughly cleaned and prepared to ensure a defect-free surface.
+
+    <strong>Step 2: Photoresist Coating</strong><br>
+    A layer of light-sensitive photoresist is applied to the wafer's surface.
+
+    <strong>Step 3: Photomask Design</strong><br>
+    A photomask with the desired circuit pattern is created using advanced techniques.
+
+    <strong>Step 4: Photomask Alignment</strong><br>
+    The photomask is precisely aligned over the photoresist-coated wafer.
+
+    <strong>Step 5: Exposure</strong><br>
+    UV light is shined through the photomask, transferring the pattern onto the photoresist.
+
+    <strong>Step 6: Development</strong><br>
+    The exposed photoresist is chemically developed, leaving behind the pattern.
+
+    <strong>Step 7: Etching</strong><br>
+    The exposed areas of the wafer are etched to create the desired structures.
+
+    <strong>Step 8: Photoresist Stripping</strong><br>
+    The remaining photoresist is removed from the wafer.
+
+    <strong>Step 9: Inspection</strong><br>
+    The wafer undergoes rigorous inspection to ensure quality and accuracy.
+
+    <strong>Step 10: Repeat for Multiple Layers</strong><br>
+    The process is repeated to build multiple layers in semiconductor devices.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
+    // Animation logic (updated)
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
+
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
+
+    const circuitGeometry = new THREE.CircleGeometry(1, 32);
+    const circuitMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
+    const circuit = new THREE.Mesh(circuitGeometry, circuitMaterial);
+    circuit.position.set(0, 0, 0.1);
+    scene.add(circuit);
+
+    const light = new THREE.SpotLight(0xffffff, 1, 10);
+    light.position.set(0, 0, 5);
+    scene.add(light);
+
+    camera.position.z = 8;
+
+    let isExposing = false;
+    let exposureTime = 0;
+
+    // Animation loop (updated)
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (isExposing) {
+        exposureTime += 0.01;
+        if (exposureTime >= 1) {
+          isExposing = false;
+          developPhotoresist();
+        }
+      }
+
+      circuitMaterial.opacity = exposureTime;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    function exposePhotoresist() {
+      isExposing = true;
+      exposureTime = 0;
+      light.visible = true;
+    }
+
+    function developPhotoresist() {
+      setTimeout(() => {
+        light.visible = false;
+        // You can add additional steps here such as etching, inspection, etc.
+      }, 1000);
+    }
+
+    function startExposure() {
+      exposePhotoresist();
+    }
+
+    function goBack() {
+      window.close();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photolithography 101</title>
+  <style>
+    body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1px;
+      justify-items: center;
+      align-items: end;
+      background-color: #4d4d4d;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    /* Additional styles for the animation container */
+    #animation-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    #animation-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #animation-canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Photolithography Simulation</h2>
+    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <button onclick="goBack()">Back</button>
+    <strong>Step 1: Substrate Preparation</strong><br>
+    A silicon wafer is cleaned and chemically treated to remove impurities and create a smooth surface.
+
+    <strong>Step 2: Spin-Coating of Photoresist</strong><br>
+    A layer of light-sensitive photoresist is spin-coated onto the silicon wafer.
+
+    <strong>Step 3: Soft Bake</strong><br>
+    The coated wafer is baked at a low temperature to evaporate any solvent and pre-harden the photoresist.
+
+    <strong>Step 4: Photomask Alignment</strong><br>
+    A photomask with the desired pattern is accurately aligned over the wafer.
+
+    <strong>Step 5: Exposure</strong><br>
+    UV light shines through the photomask onto the photoresist-coated wafer, altering its solubility based on the pattern.
+
+    <strong>Step 6: Post-Exposure Bake</strong><br>
+    Another baking process stabilizes the exposed photoresist pattern.
+
+    <strong>Step 7: Development</strong><br>
+    The wafer is immersed in a developer solution to remove the exposed or unexposed photoresist, revealing the pattern.
+
+    <strong>Step 8: Etching</strong><br>
+    The exposed areas of the wafer are chemically etched away to create the desired features.
+
+    <strong>Step 9: Photoresist Strip</strong><br>
+    The remaining photoresist, no longer needed, is stripped from the wafer.
+
+    <strong>Step 10: Repeat for Multiple Layers</strong><br>
+    Optionally, these steps are repeated to create multiple layers in semiconductor devices.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
+    // Animation logic
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
+
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
+
+    const stepperMotorGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.2);
+    const stepperMotorMaterial = new THREE.MeshPhongMaterial({ color: 0x3366cc });
+    const stepperMotor = new THREE.Mesh(stepperMotorGeometry, stepperMotorMaterial);
+    stepperMotor.position.set(0, 0, 0.1);
+    scene.add(stepperMotor);
+
+    const maskGeometry = new THREE.PlaneGeometry(0.8, 0.8);
+    const maskMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
+    const mask = new THREE.Mesh(maskGeometry, maskMaterial);
+    mask.position.set(0, 0, 0.2);
+    scene.add(mask);
+
+    const photoresistGeometry = new THREE.CircleGeometry(1.8, 32);
+    const photoresistMaterial = new THREE.MeshPhongMaterial({ color: 0xffff00, transparent: true, opacity: 0.7 });
+    const photoresist = new THREE.Mesh(photoresistGeometry, photoresistMaterial);
+    photoresist.position.set(0, 0, 0.05);
+    scene.add(photoresist);
+
+    const exposureLight = new THREE.SpotLight(0xffffff, 1, 8);
+    exposureLight.position.set(0, 0, 5);
+    scene.add(exposureLight);
+
+    const developerGeometry = new THREE.CircleGeometry(1.8, 32);
+    const developerMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00, transparent: true, opacity: 0.7 });
+    const developer = new THREE.Mesh(developerGeometry, developerMaterial);
+    developer.position.set(0, 0, 0.1);
+    scene.add(developer);
+
+    camera.position.z = 8;
+
+    let maskMoving = false;
+    let maskPositionX = 0;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      if (maskMoving) {
+        mask.position.x = maskPositionX;
+        maskPositionX += 0.01;
+        if (maskPositionX > 2) {
+          maskMoving = false;
+          exposePhotoresist();
+        }
+      }
+
+      photoresist.rotation.z += 0.01;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    function exposePhotoresist() {
+      setTimeout(() => {
+        exposureLight.visible = false;
+        developer.visible = true;
+        developPhotoresist();
+      }, 1000);
+    }
+
+    function developPhotoresist() {
+      setTimeout(() => {
+        developer.visible = false;
+        // You can add additional steps here such as rinsing, etching, etc.
+      }, 1000);
+    }
+
+    function startExposure() {
+      maskMoving = true;
+      exposureLight.visible = true;
+    }
+
+    function goBack() {
+      window.close();
+    }
+  </script>
+</body>
+</html>

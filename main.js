@@ -5,18 +5,25 @@ let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1000,
+    height: 1200,
     webPreferences: {
       nodeIntegration: true
     }
   });
+
+  const iconPath = path.join(__dirname, 'images/favicon.ico');
+  mainWindow.setIcon(iconPath);
 
   mainWindow.loadFile('index.html');
 
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
+
+  mainWindow.titleBarOverlay = {
+    color: '#FF0000',
+  };
 }
 
 app.whenReady().then(() => {
