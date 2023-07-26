@@ -5,8 +5,8 @@
 
 
   
-  [es](README.md)  |
-  [es](README-es.md)  |
+  [Eng](README.md)  |
+  [Es](README-es.md)  |
   <a href="https://docs.digger.dev/">Docs</a> | 
   <a href="https://www.loom.com/share/51f27994d95f4dc5bb6eea579e1fa8dc?sid=403f161a-6c0b-44ac-af57-cc9b56190f64">Demo Video</a>
 </h2>
