@@ -48,7 +48,7 @@ LearnPhotolithography has 2 main components:
 ## Install & run
 
 1.  ```git clone https://github.com/hunterjreid/Photolithography-101```
-2.  ```cd Photolithography-101```
+2.  ```cd LithoLab```
 3.  ```npm install```
 4.  ```npm start```
 5.  ```Get to learning about Photolithography 📲 📞 📟 📠 🔋 🔌💻```
@@ -62,44 +62,3 @@ We love contributions. Check out our [contribiting guide](CONTRIBUTING.md) to ge
 https://en.wikipedia.org/wiki/Photolithography  
 https://en.wikipedia.org/wiki/Ultraviolet  
 https://en.wikipedia.org/wiki/Extreme_ultraviolet_lithography  
-
-
-Lesson 3: Deep Ultraviolet (DUV) Lithography: Wavelength and Advantages
-
-- Explore the benefits and limitations of DUV lithography compared to older UV technologies.
-
-Lesson 4: DUV Photomasks: Design and Fabrication
-
-- Examine the process of creating DUV photomasks and their role in defining circuit patterns.
-
-Lesson 5: Resolution Enhancement Techniques (RET) in DUV Lithography
-
-- Study the various RETs used to enhance resolution and overcome diffraction limits in DUV lithography.
-
-Lesson 6: Advanced DUV Exposure Systems and Steppers
-
-- Get familiar with the advanced DUV exposure tools and steppers used in modern semiconductor fabrication.
-
-Lesson 7: Challenges and Limits of DUV Lithography
-
-- Identify the challenges and limitations of DUV lithography as feature sizes approach physical limits.
-
-Lesson 8: Introduction to Extreme Ultraviolet (EUV) Lithography
-
-- Introduce the principles and benefits of EUV lithography as a next-generation semiconductor manufacturing technique.
-
-Lesson 9: EUV Light Source and Optics
-
-- Understand the unique light source and optical components used in EUV lithography.
-
-Lesson 10: EUV Photomasks and Defects
-
-- Explore the intricacies of EUV photomask manufacturing and the challenges posed by defects.
-
-Lesson 11: EUV Exposure Systems: Scanners and Challenges
-
-- Delve into the advanced EUV exposure systems, scanners, and the challenges in their implementation.
-
-Lesson 12: Future Prospects and Beyond: EUV and Emerging Lithography Technologies
-
-- Discuss the future prospects of EUV lithography and emerging technologies that could further revolutionize semiconductor manufacturing.
