@@ -1,4 +1,5 @@
-<img width="1470" alt="wqddqwqwdwdqq" src="https://github.com/hunterjreid/LearnPhotolithography/assets/62681404/1471e04d-30f7-4ee9-8a69-3180e366598b">
+
+<img width="1470" alt="r4ff3f3f34f3f3" src="https://github.com/hunterjreid/LearnPhotolithography/assets/62681404/a56ba5e5-919e-4f29-809d-d4ae78b9323d">
 
 <h2 align="center">
 
@@ -11,7 +12,7 @@
   <a href="https://www.loom.com/share/51f27994d95f4dc5bb6eea579e1fa8dc?sid=403f161a-6c0b-44ac-af57-cc9b56190f64">Demo Video</a>
 </h2>
 
-Lithography Experimental App Explained in Electron.js
+LithoLab - Photolithography Teacher learn Photolithograhy built in Electron.js
 
 <sub>The educational resources are provided in English and Spanish.  </sub>
 
