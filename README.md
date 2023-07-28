@@ -8,8 +8,8 @@
   
   [English](README.md)  |
   [Spanish](README-es.md)  |
-  <a href="https://docs.google.com/">Docs</a> | 
-  <a href="https://www.youtube.com/watch?v=z9i_h-WMQ68">Demo Video</a>
+  <a href="https://github.com/hunterjreid/LearnPhotolithography/wiki/How-to-create-a-lesson">Docs</a> | 
+  <a href="https://github.com/hunterjreid/LearnPhotolithography/wiki/How-to-create-a-lesson">Demo Video</a>
 </h2>
 
 LithoLab - Photolithography Teacher learn Photolithograhy built in Electron.js
