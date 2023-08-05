@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photolithography 101 - Lesson 5</title>
+  <style>
+    /* Add any additional styles here */
+    body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1px;
+      justify-items: center;
+      align-items: end;
+      background-color: #4d4d4d;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    /* Additional styles for the animation container */
+    #animation-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    #animation-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #animation-canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 5: Exposure Systems and Light Sources</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Exposure Systems and Light Sources</h2>
+    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <button onclick="goBack()">Back</button>
+    <strong>Exposure Systems and Light Sources</strong><br>
+    Exposure systems are critical in photolithography, and they use various light sources to expose patterns on the wafer.
+
+    <strong>Step 1: Light Sources</strong><br>
+    Light sources, such as lasers and ultraviolet lamps, emit light of specific wavelengths required for the lithography process.
+
+    <strong>Step 2: Collimation</strong><br>
+    The light is collimated and directed towards the photomask.
+
+    <strong>Step 3: Mask Illumination</strong><br>
+    The collimated light passes through the photomask, which contains the pattern to be transferred.
+
+    <strong>Step 4: Projection and Exposure</strong><br>
+    The pattern is projected onto the wafer, exposing the photoresist and initiating the pattern transfer process.
+
+    <strong>Applications</strong><br>
+    Exposure systems are crucial in the fabrication of integrated circuits and advanced microelectronics.
+
+    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
+    // Animation logic
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
+
+    // Add objects and animation logic here
+    const reticleGeometry = new THREE.PlaneGeometry(4, 4);
+    const reticleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+    const reticle = new THREE.Mesh(reticleGeometry, reticleMaterial);
+    scene.add(reticle);
+
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
+
+    const lightGeometry = new THREE.SphereGeometry(0.2, 8, 8);
+    const lightMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const light1 = new THREE.Mesh(lightGeometry, lightMaterial);
+    const light2 = new THREE.Mesh(lightGeometry, lightMaterial);
+
+    scene.add(light1);
+    scene.add(light2);
+
+    light1.position.set(-3, 2, 5);
+    light2.position.set(3, -2, 5);
+
+    camera.position.z = 8;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      reticle.rotation.z += 0.005;
+      light1.position.x = Math.sin(Date.now() * 0.002) * 3;
+      light1.position.y = Math.cos(Date.now() * 0.002) * 2;
+      light2.position.x = -Math.sin(Date.now() * 0.002) * 3;
+      light2.position.y = -Math.cos(Date.now() * 0.002) * 2;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    function goBack() {
+      window.close();
+    }
+  </script>
+</body>
+</html>

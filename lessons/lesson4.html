@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photolithography 101 - Lesson 4</title>
+  <style>
+    /* Add any additional styles here */
+    body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1px;
+      justify-items: center;
+      align-items: end;
+      background-color: #4d4d4d;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    /* Additional styles for the animation container */
+    #animation-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    #animation-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #animation-canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 4: Photomasks and Reticles</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Photomasks and Reticles</h2>
+    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <button onclick="goBack()">Back</button>
+    <strong>Photomasks and Reticles</strong><br>
+    Photomasks, also known as masks or reticles, are essential components in photolithography. They contain patterns that are transferred onto the wafer during the exposure process.
+
+    <strong>Step 1: Design and Fabrication</strong><br>
+    Photomasks are designed using specialized software. The patterns are then transferred onto a glass substrate coated with a chrome layer through a process called mask fabrication.
+
+    <strong>Step 2: Alignment and Registration</strong><br>
+    During the lithography process, the photomask is aligned and registered precisely with the wafer to ensure accurate pattern transfer.
+
+    <strong>Step 3: Exposure</strong><br>
+    The photomask is placed in the exposure system, and light shines through it onto the wafer, transferring the pattern onto the photoresist.
+
+    <strong>Step 4: Reticles in Advanced Lithography</strong><br>
+    In advanced lithography techniques such as multi-patterning, multiple reticles are used to create complex patterns.
+
+    <strong>Applications</strong><br>
+    Photomasks are used extensively in the semiconductor industry for manufacturing integrated circuits and microelectronic devices.
+
+    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
+    // Animation logic
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
+
+    // Add objects and animation logic here
+    const reticleGeometry = new THREE.PlaneGeometry(4, 4);
+    const reticleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
+    const reticle = new THREE.Mesh(reticleGeometry, reticleMaterial);
+    scene.add(reticle);
+
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
+
+    camera.position.z = 8;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      reticle.rotation.z += 0.005;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    function goBack() {
+      window.close();
+    }
+  </script>
+</body>
+</html>

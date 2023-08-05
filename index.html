@@ -2,63 +2,85 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Photolithography 101</title>
+  <title>Photolithography App</title>
   <link rel="stylesheet" href="assets/styles.css">
   <style>
     body {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 1px;
-      justify-items: center;
-      align-items: end;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       background-color: #4d4d4d;
     }
 
     h1 {
-      grid-column: 1 / -1;
       text-align: center;
     }
 
+    .content {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-gap: 10px;
+      align-items: center;
+    }
+
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .lesson-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
     .title-bar {
-  background-color: #FF0000 !important;
-}
+      background-color: #FF0000 !important;
+    }
 
     button {
       width: 150px;
       font-family: 'Gilroy', sans-serif;
-    font-weight: 600;
-    border: none;
+      font-weight: 600;
+      border: none;
       font-size: 16px;
       background: lightgray;
       margin: 5px;
     }
   </style>
 </head>
-<div>
-    <label for="language">Select a language:</label>
-    <select id="language" onchange="changeLanguage()">
-      <option value="english">English</option>
-      <option value="spanish">Spanish</option>
-    </select>
-  </div>
-  <br>
 
 <body>
-  <h1>Photolithography 101</h1>
+  <h1>LithoLab</h1>
 
+  <div class="content">
+    <div class="content-text">
+      <h2>https://github.com/hunterjreid/LithoLab</h2>
+      <h3>Desktop app for lithography learning available for Windows, macOS, and Linux</h3>
+      <h4>Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.</h4>
+      <label for="language">Select a language:</label>
+      <select id="language" onchange="changeLanguage()">
+        <option value="english">English</option>
+        <option value="spanish">Spanish</option>
+      </select>
+    </div>
 
-
-  <button onclick="openLesson1()">Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</button>
-  <button onclick="openLesson2()">Lesson 2: Optical Lithography Fundamentals</button>
-  <button onclick="openAnimation('Animation 2')">View Animation 2</button>
-  <button onclick="openAnimation('Animation 3')">View Animation 3</button>
-  <button onclick="openAnimation('Animation 4')">View Animation 4</button>
-  <button onclick="openAnimation('Animation 5')">View Animation 5</button>
-  <button onclick="openAnimation('Animation 6')">View Animation 6</button>
-  <button onclick="openAnimation('Animation 7')">View Animation 7</button>
-  <button onclick="openAnimation('Animation 8')">View Animation 8</button>
-  <button onclick="openAnimation('Animation 9')">View Animation 9</button>
-  <button onclick="openAnimation('Animation 10')">View Animation 10</button>
+    <div class="lesson-buttons">
+      <button onclick="openLesson('Lesson 1')">Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</button>
+      <button onclick="openLesson('Lesson 2')">Lesson 2: Optical Lithography Fundamentals</button>
+      <button onclick="openLesson('Lesson 3')">Lesson 3: Photoresists and Their Applications</button>
+      <button onclick="openLesson('Lesson 4')">Lesson 4: Photomasks and Reticles</button>
+      <button onclick="openLesson('Lesson 5')">Lesson 5: Exposure Systems and Light Sources</button>
+      <button onclick="openLesson('Lesson 6')">Lesson 6: Photoresist Patterning Techniques</button>
+      <button onclick="openLesson('Lesson 7')">Lesson 7: Developing and Etching Processes</button>
+      <button onclick="openLesson('Lesson 8')">Lesson 8: Resolution Enhancement Techniques</button>
+      <button onclick="openLesson('Lesson 9')">Lesson 9: Alignment and Overlay Strategies</button>
+      <button onclick="openLesson('Lesson 10')">Lesson 10: Emerging Trends in Photolithography</button>
+    </div>
+  </div>
 
   <script>
     function changeLanguage() {
@@ -76,19 +98,8 @@
       }
     }
 
-    function openLesson1(animationName) {
-      const animationWindow = window.open('lessons/lesson1.html', '_blank', 'width=800,height=600');
-      animationWindow.animationName = animationName;
-    }
-
-    function openLesson2(animationName) {
-      const animationWindow = window.open('lessons/lesson2.html', '_blank', 'width=800,height=600');
-      animationWindow.animationName = animationName;
-    }
-
-    function openAnimation(animationName) {
-      const animationWindow = window.open('animation.html', '_blank', 'width=800,height=600');
-      animationWindow.animationName = animationName;
+    function openLesson(lessonName) {
+      const animationWindow = window.open('lessons/' + lessonName.toLowerCase().replace(/ /g, '') + '.html', '_blank', 'width=800,height=600');
     }
   </script>
 </body>

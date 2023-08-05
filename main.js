@@ -12,7 +12,7 @@ function createWindow() {
     }
   });
 
-  const iconPath = path.join(__dirname, 'images/favicon.ico');
+  const iconPath = path.join(__dirname, 'assets/images/favicon.ico');
   mainWindow.setIcon(iconPath);
 
   mainWindow.loadFile('index.html');

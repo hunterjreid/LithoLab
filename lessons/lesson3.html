@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Photolithography 101 - Lesson 3</title>
+  <style>
+    /* Add any additional styles here */
+    body {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 1px;
+      justify-items: center;
+      align-items: end;
+      background-color: #4d4d4d;
+    }
+
+    h1 {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      height: 50px;
+      font-size: 16px;
+      margin: 5px;
+    }
+
+    /* Additional styles for the animation container */
+    #animation-container {
+      grid-column: 1 / -1;
+      text-align: center;
+    }
+
+    #animation-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #animation-canvas {
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lesson 3: Photoresists and Their Applications</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Photoresist Application</h2>
+    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <button onclick="goBack()">Back</button>
+    <strong>Photoresist Types</strong><br>
+    There are two main types of photoresists: positive and negative. Positive photoresists become more soluble upon exposure to light, while negative photoresists become less soluble.
+
+    <strong>Step 1: Spin-Coating</strong><br>
+    The wafer is placed on a spin coater, and the photoresist material is applied to the wafer surface. The wafer spins rapidly, spreading the photoresist evenly.
+
+    <strong>Step 2: Soft Bake</strong><br>
+    The wafer is heated to remove any remaining solvent and pre-harden the photoresist.
+
+    <strong>Step 3: Exposing</strong><br>
+    The wafer is exposed to UV light through a photomask, transferring the pattern onto the photoresist.
+
+    <strong>Step 4: Post-Exposure Bake</strong><br>
+    The wafer is heated again to stabilize the pattern in the photoresist.
+
+    <strong>Step 5: Developing</strong><br>
+    The wafer is immersed in a developer solution, which selectively removes either the exposed or unexposed parts of the photoresist, revealing the desired pattern.
+
+    <strong>Step 6: Hard Bake</strong><br>
+    A final baking step is performed to further harden the photoresist and make it resistant to etching processes.
+
+    <strong>Applications</strong><br>
+    Photoresists are crucial in various applications such as semiconductor fabrication, microelectronics, and nanotechnology.
+
+    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script>
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
+    // Animation logic
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
+
+    // Add objects and animation logic here (if required)
+
+    camera.position.z = 8;
+
+    // Animation loop
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Update objects and animation here (if required)
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+
+    function goBack() {
+      window.close();
+    }
+  </script>
+</body>
+</html>
