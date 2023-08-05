@@ -47,7 +47,7 @@ LearnPhotolithography has 2 main components:
 
 ## Install & run
 
-1.  ```git clone https://github.com/hunterjreid/Photolithography-101```
+1.  ```git clone https://github.com/hunterjreid/LithoLab```
 2.  ```cd LithoLab```
 3.  ```npm install```
 4.  ```npm start```
