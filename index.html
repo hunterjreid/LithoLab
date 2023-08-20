@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Photolithography App</title>
-  <link rel="stylesheet" href="assets/styles.css">
+  <title>LithoLab: Learn Photolithography</title>
+  <link rel="stylesheet" href="assets/styles.css"> <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
     body {
       display: flex;
@@ -12,7 +12,20 @@
       justify-content: center;
       background-color: #4d4d4d;
     }
+    .header {
+      width: 100%;
+        padding: 50px;
+      background: linear-gradient(to bottom, #00d9ff, #4700ee); /* Adjust colors as needed */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
+    .header h1 {
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+    }
     h1 {
       text-align: center;
     }
@@ -54,10 +67,15 @@
 </head>
 
 <body>
-  <h1>LithoLab</h1>
 
+  <div class="header">
+    <h1>LithoLab</h1>
+    <img style="width: 232px;height: 232px;" src="./assets/images/sqlogo.png">
+  </div>
+  <h1>EUV and DUV Explained for begginers to indmeaiteates</h1>
   <div class="content">
     <div class="content-text">
+    
       <h2>https://github.com/hunterjreid/LithoLab</h2>
       <h3>Desktop app for lithography learning available for Windows, macOS, and Linux</h3>
       <h4>Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.</h4>
@@ -67,21 +85,23 @@
         <option value="spanish">Spanish</option>
       </select>
     </div>
+   
 
     <div class="lesson-buttons">
-      <button onclick="openLesson('Lesson 1')">Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</button>
-      <button onclick="openLesson('Lesson 2')">Lesson 2: Optical Lithography Fundamentals</button>
-      <button onclick="openLesson('Lesson 3')">Lesson 3: Photoresists and Their Applications</button>
-      <button onclick="openLesson('Lesson 4')">Lesson 4: Photomasks and Reticles</button>
-      <button onclick="openLesson('Lesson 5')">Lesson 5: Exposure Systems and Light Sources</button>
-      <button onclick="openLesson('Lesson 6')">Lesson 6: Photoresist Patterning Techniques</button>
-      <button onclick="openLesson('Lesson 7')">Lesson 7: Developing and Etching Processes</button>
-      <button onclick="openLesson('Lesson 8')">Lesson 8: Resolution Enhancement Techniques</button>
-      <button onclick="openLesson('Lesson 9')">Lesson 9: Alignment and Overlay Strategies</button>
-      <button onclick="openLesson('Lesson 10')">Lesson 10: Emerging Trends in Photolithography</button>
-    </div>
+        <button class="lesson-buttons" onclick="openLesson('Home')">Home</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 1')">Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 2')">Lesson 2: Optical Lithography Fundamentals</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 3')">Lesson 3: Photoresists and Their Applications</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 4')">Lesson 4: Photomasks and Reticles</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 5')">Lesson 5: Exposure Systems and Light Sources</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 6')">Lesson 6: Photoresist Patterning Techniques</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 7')">Lesson 7: Developing and Etching Processes</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 8')">Lesson 8: Resolution Enhancement Techniques</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 9')">Lesson 9: Alignment and Overlay Strategies</button>
+      <button class="lesson-buttons" onclick="openLesson('Lesson 10')">Lesson 10: Emerging Trends in Photolithography</button>
+    </div> <div id="lessonContent"></div>
   </div>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <script>
     function changeLanguage() {
       const languageDropdown = document.getElementById('language');
@@ -90,17 +110,120 @@
       // You can add code here to handle the selected language
       // For example, you can use JavaScript to change the text on the buttons or load different content based on the language.
       if (selectedLanguage === 'english') {
-        // English language selected
-        console.log('Selected language: English');
+        updateContent('english');
       } else if (selectedLanguage === 'spanish') {
-        // Spanish language selected
-        console.log('Selected language: Spanish');
+        updateContent('spanish');
       }
-    }
+    }  function initializePage() {
+    const languageDropdown = document.getElementById('language');
+    const selectedLanguage = languageDropdown.value;
+    openLesson('Home')
 
-    function openLesson(lessonName) {
-      const animationWindow = window.open('lessons/' + lessonName.toLowerCase().replace(/ /g, '') + '.html', '_blank', 'width=800,height=600');
-    }
+    updateContent(selectedLanguage);
+  }
+
+  function openLesson(lessonName) {
+  const lessonFrame = document.getElementById('lessonFrame');
+  const lessonFileName = lessonName.toLowerCase().replace(/ /g, '') + '.html';
+
+  lessonFrame.src = 'lessons/' + lessonFileName;
+}
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const languageDropdown = document.getElementById('language');
+    languageDropdown.addEventListener('change', initializePage);
+  });
+    function updateContent(language) {
+  const lessonButtons = document.querySelectorAll('.lesson-buttons button');
+
+  const translations = {
+    'Lesson 1': {
+      'english': 'Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing',
+      'spanish': 'Lección 1: Introducción a la Fotolitografía y Fabricación de Semiconductores'
+    },
+    'Lesson 2': {
+      'english': 'Lesson 2: Optical Lithography Fundamentals',
+      'spanish': 'Lección 2: Fundamentos de la Litografía Óptica'
+    },
+    'Lesson 3': {
+      'english': 'Lesson 3: Photoresists and Their Applications',
+      'spanish': 'Lección 3: Fotorresinas y sus Aplicaciones'
+    },
+    'Lesson 4': {
+      'english': 'Lesson 4: Photomasks and Reticles',
+      'spanish': 'Lección 4: Fotomáscaras y Retículas'
+    },
+    'Lesson 5': {
+      'english': 'Lesson 5: Exposure Systems and Light Sources',
+      'spanish': 'Lección 5: Sistemas de Exposición y Fuentes de Luz'
+    },
+    'Lesson 6': {
+      'english': 'Lesson 6: Photoresist Patterning Techniques',
+      'spanish': 'Lección 6: Técnicas de Patrón de Fotorresist'
+    },
+    'Lesson 7': {
+      'english': 'Lesson 7: Developing and Etching Processes',
+      'spanish': 'Lección 7: Procesos de Revelado y Grabado'
+    },
+    'Lesson 8': {
+      'english': 'Lesson 8: Resolution Enhancement Techniques',
+      'spanish': 'Lección 8: Técnicas de Mejora de la Resolución'
+    },
+    'Lesson 9': {
+      'english': 'Lesson 9: Alignment and Overlay Strategies',
+      'spanish': 'Lección 9: Estrategias de Alineación y Superposición'
+    },
+    'Lesson 10': {
+      'english': 'Lesson 10: Emerging Trends in Photolithography',
+      'spanish': 'Lección 10: Tendencias Emergentes en Fotolitografía'
+    },
+    // Add translations for other lessons
+  };
+
+  lessonButtons.forEach(button => {
+    const lessonName = button.textContent.trim();
+    button.textContent = translations[lessonName][language];
+  });
+
+  // Update other content here...
+
+  const headings = document.querySelectorAll('h2, h3, h4');
+
+  const headingTranslations = {
+    'https://github.com/hunterjreid/LithoLab': {
+      'english': 'https://github.com/hunterjreid/LithoLab',
+      'spanish': 'https://github.com/hunterjreid/LithoLab'
+    },
+    'Desktop app for lithography learning available for Windows, macOS, and Linux': {
+      'english': 'Desktop app for lithography learning available for Windows, macOS, and Linux',
+      'spanish': 'Aplicación de escritorio para el aprendizaje de la litografía disponible para Windows, macOS y Linux'
+    },
+    'Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.': {
+      'english': 'Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.',
+      'spanish': 'La fotolitografía es un proceso utilizado para crear patrones en la superficie de un material. A menudo se realiza a nivel nanométrico, donde las dimensiones se miden en nanómetros (milmillonésimas de metro). A esta escala, las leyes de la física se comportan de manera diferente, por lo que puede ser difícil comprender cómo funciona la litografía.'
+    },
+    // Add translations for other headings
+  };
+
+  headings.forEach(heading => {
+    const originalText = heading.textContent.trim();
+    heading.textContent = headingTranslations[originalText][language];
+  });
+}
+
+function openLesson(lessonName) {
+  const lessonContentDiv = document.getElementById('lessonContent');
+  const lessonFileName = lessonName.toLowerCase().replace(/ /g, '') + '.html';
+
+  fetch('lessons/' + lessonFileName)
+    .then(response => response.text())
+    .then(html => {
+      lessonContentDiv.innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Error fetching lesson content:', error);
+    });
+}
   </script>
 </body>
 </html>

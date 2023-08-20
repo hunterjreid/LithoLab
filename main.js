@@ -27,28 +27,63 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
-  createWindow();
-
-  ipcMain.on('open-animation', (event, animationName) => {
-    const animationWindow = new BrowserWindow({
-      width: 800,
-      height: 600,
-      webPreferences: {
-        nodeIntegration: true
-      }
-    });
-
-    animationWindow.loadFile('animation.html');
-    animationWindow.webContents.on('did-finish-load', () => {
-      animationWindow.webContents.send('animation-name', animationName);
-    });
-
-    animationWindow.on('closed', () => {
-      animationWindow = null;
-    });
+  const loadingWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    frame: false, // Hide the frame for the loading window
+    webPreferences: {
+      nodeIntegration: true
+    },
+    titleBarOverlay: {
+        color: '#2f3241',
+        symbolColor: '#74b1be',
+        height: 60
+      },
+    trafficLightPosition: { x: 10, y: 10 }
   });
+
+  loadingWindow.loadFile('loading.html');
+
+  // Create main window after a short delay to simulate loading
+  setTimeout(() => {
+    loadingWindow.close(); // Close the loading window
+    createWindow(); // Create the main window
+  }, 2000); // Adjust the delay as needed
 });
 
+function createWindow() {
+    mainWindow = new BrowserWindow({
+      width: 1000,
+      height: 1200,
+      webPreferences: {
+        nodeIntegration: true
+      },
+
+    });
+  
+    // ... (rest of your existing code)
+  
+    mainWindow.loadFile('index.html');
+  
+    // ... (rest of your existing code)
+  
+    // Apply your custom header bar styling
+    mainWindow.webContents.on('did-finish-load', () => {
+      mainWindow.webContents.insertCSS(`
+        /* Add your custom header bar styles here */
+        .custom-header {
+          height: 40px;
+          background-color: #333;
+          color: #fff;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 16px;
+        }
+      `);
+    });
+  }
+  
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow();
