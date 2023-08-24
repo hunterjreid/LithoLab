@@ -3,10 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 6</title>
-  <!-- Add any additional styles here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+
 </head>
 <body>
   <h1>Lesson 6: Photoresist Patterning Techniques</h1>
-  <!-- Add content for Lesson 6 here -->
+  
+  <div id="canvas-container"></div>
+  
+  <div id="lesson-content">
+    <h2>Introduction to Photoresist Patterning</h2>
+    <p>Photoresist patterning is a fundamental technique in photolithography used to transfer patterns onto substrates. It involves the use of photoresist, a light-sensitive material that undergoes chemical changes when exposed to light.</p>
+    
+    <h2>Positive vs. Negative Photoresists</h2>
+    <p>There are two main types of photoresists: positive and negative. Positive photoresists become more soluble in a developer solution when exposed to light, allowing the exposed areas to be removed, leaving behind the desired pattern. Negative photoresists, on the other hand, become less soluble when exposed to light, resulting in the unexposed areas being dissolved away.</p>
+    
+    <h2>Photoresist Patterning Steps</h2>
+    <ol>
+      <li>Spin-Coating: A thin layer of photoresist is applied to the substrate by spinning it at high speeds.</li>
+      <li>Soft Bake: The coated substrate is gently heated to remove excess solvent and improve adhesion.</li>
+      <li>Exposure: UV light is projected through a mask onto the photoresist, creating a pattern.</li>
+      <li>Post-Exposure Bake: The substrate is heated again to stabilize the exposed pattern.</li>
+      <li>Development: The substrate is immersed in a developer solution to remove either the exposed or unexposed photoresist, depending on the type.</li>
+      <li>Hard Bake: A final baking step is performed to further cure the remaining photoresist.</li>
+    </ol>
+    
+    <h2>Advanced Patterning Techniques</h2>
+    <p>Advanced techniques such as multi-layer lithography, double patterning, and self-assembly have expanded the capabilities of photoresist patterning, enabling the creation of intricate and miniaturized structures used in various industries including microelectronics and MEMS (Micro-Electro-Mechanical Systems).</p>
+  </div>
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    // Create a cube and add it to the scene
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Rotate the cube
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
 </body>
 </html>

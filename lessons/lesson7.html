@@ -3,10 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 7</title>
-  <!-- Add any additional styles here -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
 </head>
 <body>
   <h1>Lesson 7: Developing and Etching Processes</h1>
-  <!-- Add content for Lesson 7 here -->
+  
+  <div id="canvas-container"></div>
+  
+  <div id="lesson-content">
+    <h2>Introduction to Developing and Etching</h2>
+    <p>Developing and etching are critical steps in the photolithography process for transferring patterns onto substrates. Developing removes the exposed or unexposed photoresist, depending on the type, while etching selectively removes material from the substrate.</p>
+    
+    <h2>Developing Process</h2>
+    <p>In positive photoresist patterning, the exposed areas become more soluble and are removed by a developer solution, revealing the pattern. In negative photoresist, the unexposed areas are dissolved away, leaving the desired pattern intact.</p>
+    
+    <h2>Etching Techniques</h2>
+    <p>Etching is used to transfer the pattern into the substrate material. There are two main types: wet etching and dry etching. Wet etching involves using a chemical solution to selectively remove material, while dry etching uses plasma to achieve a more controlled and precise etching process.</p>
+  </div>
+  
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    // Create a rotating cube and add it to the scene
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Rotate the cube
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
 </body>
 </html>

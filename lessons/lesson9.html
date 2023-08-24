@@ -2,11 +2,55 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Photolithography 101 - Lesson 3</title>
-  <!-- Add any additional styles here -->
+  <title>Photolithography 101 - Conclusion</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <style>
+    body { margin: 0; background-color: #f0f0f0; }
+    canvas { display: block; }
+  </style>
 </head>
 <body>
-  <h1>Lesson 3: Photoresists and Their Applications</h1>
-  <!-- Add content for Lesson 3 here -->
+  <h1>Conclusion: Mastering Photolithography</h1>
+  
+  <div id="canvas-container"></div>
+  
+  <div id="lesson-content">
+    <p>Congratulations! You've completed Photolithography 101, a journey through the fundamental concepts and techniques of photolithography. Throughout these lessons, you've learned about photoresists, exposure processes, developing and etching, resolution enhancement techniques, and much more.</p>
+    
+    <p>Photolithography is a cornerstone of microfabrication, enabling the creation of intricate patterns used in electronics, photonics, MEMS, and more. By understanding the principles covered in these lessons, you're equipped to delve further into the world of microfabrication and nanotechnology.</p>
+    
+    <p>Remember, the field of photolithography is dynamic and ever-evolving. New technologies, materials, and techniques continue to push the boundaries of what's possible. Stay curious, keep learning, and you might just be a part of the next breakthrough!</p>
+  </div>
+  
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+    // Create a rotating sphere and add it to the scene
+    const geometry = new THREE.SphereGeometry(1, 32, 32);
+    const material = new THREE.MeshBasicMaterial({ color: 0x3498db, wireframe: true });
+    const sphere = new THREE.Mesh(geometry, material);
+    scene.add(sphere);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Rotate the sphere
+      sphere.rotation.x += 0.005;
+      sphere.rotation.y += 0.005;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
 </body>
 </html>
