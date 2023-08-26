@@ -3,109 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 3</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
-    /* Add any additional styles here */
-    body {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 1px;
-      justify-items: center;
-      align-items: end;
-      background-color: #4d4d4d;
-    }
-
-    h1 {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    button {
-      width: 150px;
-      height: 50px;
-      font-size: 16px;
-      margin: 5px;
-    }
-
-    /* Additional styles for the animation container */
-    #animation-container {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    #animation-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    #animation-canvas {
-      border: 1px solid #000;
-    }
+    body { margin: 0; background-color: #f0f0f0; }
+    canvas { display: block; }
   </style>
 </head>
 <body>
-  <h1>Lesson 3: Photoresists and Their Applications</h1>
-
+  <h1>Lesson 3: Advanced Photolithography Techniques</h1>
+  
   <div id="animation-container">
-    <h2 id="animation-title">Photoresist Application</h2>
+    <h2 id="animation-title">Advanced Lithography Simulation</h2>
     <canvas id="animation-canvas" width="600" height="400"></canvas>
     <button onclick="goBack()">Back</button>
-    <strong>Photoresist Types</strong><br>
-    There are two main types of photoresists: positive and negative. Positive photoresists become more soluble upon exposure to light, while negative photoresists become less soluble.
+    <strong>Step 1: Double Patterning</strong><br>
+    Double patterning involves splitting a complex pattern into two separate masks, each patterned with a simpler lithography process.
 
-    <strong>Step 1: Spin-Coating</strong><br>
-    The wafer is placed on a spin coater, and the photoresist material is applied to the wafer surface. The wafer spins rapidly, spreading the photoresist evenly.
+    <strong>Step 2: Immersion Lithography</strong><br>
+    Immersion lithography uses a liquid medium between the lens and the wafer to enhance resolution, allowing smaller features to be printed.
 
-    <strong>Step 2: Soft Bake</strong><br>
-    The wafer is heated to remove any remaining solvent and pre-harden the photoresist.
+    <strong>Step 3: Extreme Ultraviolet Lithography (EUV)</strong><br>
+    EUV lithography uses extremely short wavelengths of light to achieve even finer resolution, enabling the production of advanced semiconductor devices.
 
-    <strong>Step 3: Exposing</strong><br>
-    The wafer is exposed to UV light through a photomask, transferring the pattern onto the photoresist.
+    <strong>Step 4: Nanoimprint Lithography</strong><br>
+    Nanoimprint lithography uses a template to physically imprint the pattern onto the photoresist, offering high resolution and cost-effective replication.
 
-    <strong>Step 4: Post-Exposure Bake</strong><br>
-    The wafer is heated again to stabilize the pattern in the photoresist.
+    <strong>Step 5: Directed Self-Assembly</strong><br>
+    Directed self-assembly leverages molecular properties to guide the arrangement of block copolymers, creating precise patterns.
 
-    <strong>Step 5: Developing</strong><br>
-    The wafer is immersed in a developer solution, which selectively removes either the exposed or unexposed parts of the photoresist, revealing the desired pattern.
+    <strong>Step 6: Computational Lithography</strong><br>
+    Computational lithography involves using computer simulations to optimize mask designs and lithography processes for better pattern fidelity.
 
-    <strong>Step 6: Hard Bake</strong><br>
-    A final baking step is performed to further harden the photoresist and make it resistant to etching processes.
+    <strong>Step 7: Metrology and Inspection</strong><br>
+    Advanced techniques like scatterometry and electron microscopy are used for accurate measurement and inspection of patterns.
 
-    <strong>Applications</strong><br>
-    Photoresists are crucial in various applications such as semiconductor fabrication, microelectronics, and nanotechnology.
+    <strong>Step 8: Resolution Enhancement Techniques</strong><br>
+    Techniques like optical proximity correction (OPC) and phase-shifting masks further enhance pattern resolution.
 
-    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
+    <strong>Step 9: Sub-Resolution Assist Features (SRAFs)</strong><br>
+    SRAFs, smaller features added near main features, improve process latitude and reduce diffraction effects.
+
+    <strong>Step 10: Multiple Patterning</strong><br>
+    Multiple patterning splits patterns into simpler ones, achieving sub-resolution features.
+
+    <strong>Step 11: Next-Generation Lithography</strong><br>
+    Emerging technologies, such as nanolithography and DNA origami, offer innovative ways to achieve even smaller structures.
   </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  
   <script>
+    // Animation logic
     const animationContainer = document.getElementById('animation-container');
     const animationCanvas = document.getElementById('animation-canvas');
     const animationTitle = document.getElementById('animation-title');
 
-    // Animation logic
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
     renderer.setSize(animationCanvas.width, animationCanvas.height);
 
-    // Add objects and animation logic here (if required)
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
+
+    const patternGeometry = new THREE.CircleGeometry(1, 32);
+    const patternMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
+    const pattern = new THREE.Mesh(patternGeometry, patternMaterial);
+    pattern.position.set(0, 0, 0.1);
+    scene.add(pattern);
+
+    const light = new THREE.SpotLight(0xffffff, 1, 10);
+    light.position.set(0, 0, 5);
+    scene.add(light);
 
     camera.position.z = 8;
 
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
+    let isExposing = false;
+    let exposureTime = 0;
 
-      // Update objects and animation here (if required)
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
+    // Function to go back
     function goBack() {
-      window.close();
+      // Your goBack function implementation here
     }
+
+    // Additional content (if needed)
   </script>
 </body>
 </html>

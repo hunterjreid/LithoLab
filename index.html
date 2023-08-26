@@ -50,13 +50,31 @@
     justify-content: flex-start;
     padding: 2px;
     font-size: 16px;
+    background: #4700ee;    width: 64px;
+    }
+    .lesson-buttons3 {
+        flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 2px;
+    font-size: 16px;
     background: #4700ee;
+
+
     }
 
     .title-bar {
       background-color: #FF0000 !important;
     }
-
+.rows {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.cols {
+    display: flex;
+    flex-direction: column;
+}
     button {
       width: 150px;
       font-family: 'Gilroy', sans-serif;
@@ -70,23 +88,37 @@
 </head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 <body>
+    <div class="header">
+        <div class="cols">
 
-  <div class="header">
-    <button class="lesson-buttons" onclick="openLesson('Home')">Home</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 1')">1</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 2')">2</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 3')">3</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 4')">4</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 5')">5</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 6')">6</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 7')">7</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 8')">8</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 9')">9</button>
-    <button class="lesson-buttons" onclick="openLesson('Lesson 10')">10</button>
-    <h1>LithoLab</h1>
-    <img style="width: 232px;height: 232px;" src="./assets/images/sqlogo.png">
-  </div>
-  <h1>EUV and DUV Explained for begginers to indmeaiteates</h1>
+
+            <div class="rows">
+            <button class="lesson-button3" onclick="openLesson('Home')">Home</button>
+        
+            <h1>LithoLab</h1>
+            <h1>Demystifying EUV and DUV for Beginners to Intermediate Learners©</h1>
+            <img style="width: 132px;height: 132px;" src="./assets/images/sqlogo.png">
+            </div>
+
+            <div class="rows">
+                <button class="lesson-buttons" onclick="openLesson('Lesson 1')">1</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 2')">2</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 3')">3</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 4')">4</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 5')">5</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 6')">6</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 7')">7</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 8')">8</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 9')">9</button>
+                <button class="lesson-buttons" onclick="openLesson('Lesson 10')">10</button>
+            </div>
+          
+        </div>
+
+
+
+    </div>
+
   <div class="content">
     <div class="content-text">
     

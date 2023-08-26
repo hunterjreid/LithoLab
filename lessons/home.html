@@ -4,61 +4,38 @@
   <meta charset="UTF-8">
   <title>Photolithography 101</title>
   <style>
-    body {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 1px;
-      justify-items: center;
-      align-items: end;
-      background-color: #4d4d4d;
-    }
-
-    h1 {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    button {
-      width: 150px;
-      height: 50px;
-      font-size: 16px;
-      margin: 5px;
-    }
-
-    /* Additional styles for the animation container */
-    #animation-container {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    #animation-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    #animation-canvas {
-      border: 1px solid #000;
-    }
+    body { margin: 0; background-color: #f0f0f0; }
+    canvas { display: block; }
+    .header { background-color: #333; color: white; text-align: center; padding: 1rem; }
+    .content { max-width: 800px; margin: 0 auto; padding: 2rem; }
+    .content-text { margin-bottom: 2rem; }
+    .lesson-buttons { display: flex; justify-content: space-between; }
+    .lesson-buttons button { background-color: #333; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; }
   </style>
 </head>
 <body>
-    <div class="header">
-      <h1>LithoLab</h1>
-    </div>
+  <div class="header">
+    <h1>Welcome to LithoLab</h1>
+  </div>
+  
+  <div class="content">
     <h1>EUV and DUV Explained for Beginners to Intermediate</h1>
-    <div class="content">
-      <div class="content-text">
-        <!-- ... (your existing content) ... -->
-      </div>
-  
-      <div class="lesson-buttons">
-        <!-- ... (your existing lesson buttons) ... -->
-  
-        <!-- Add a button to open Lesson 1 -->
-        <button class="lesson-buttons" onclick="openLesson('Lesson 1')">Learn More</button>
-      </div>
+    
+    <div class="content-text">
+      <p>Welcome to LithoLab's educational series on photolithography and semiconductor manufacturing. In this series, we will dive into the fascinating world of lithography techniques, including Extreme Ultraviolet (EUV) and Deep Ultraviolet (DUV) lithography.</p>
+      
+      <p>Lithography is a critical process in semiconductor manufacturing, enabling the creation of intricate patterns on silicon wafers that form the basis of modern electronic devices. Two important techniques are EUV and DUV lithography.</p>
+      
+      <h2>What is EUV Lithography?</h2>
+      <p>Extreme Ultraviolet Lithography (EUV) is an advanced technique that uses extremely short wavelengths of light in the EUV spectrum to create incredibly small and precise patterns on semiconductor wafers. EUV light has a wavelength of around 13.5 nanometers, allowing for the production of finer features than traditional DUV lithography.</p>
+      
+      <h2>What is DUV Lithography?</h2>
+      <p>Deep Ultraviolet Lithography (DUV) uses shorter wavelengths of light in the ultraviolet spectrum to create patterns on wafers. While not as fine as EUV lithography, DUV has been a workhorse in semiconductor manufacturing for years and continues to play a vital role in producing various electronic components.</p>
     </div>
-  
-    <!-- ... (your existing script) ... -->
-  </body>
-  </html>
+    <div class="credits">
+        <p>Credits: This educational content is brought to you by LithoLab. Content curated and written by Hunter Reid.</p>
+      </div>
+
+
+</body>
+</html>

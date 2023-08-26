@@ -1,49 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head> <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+<head>
   <meta charset="UTF-8">
-  <title>Photolithography 101</title>
+  <title>Photolithography 101 - Lesson 1</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
-    body {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-gap: 1px;
-      justify-items: center;
-      align-items: end;
-      background-color: #4d4d4d;
-    }
-
-    h1 {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    button {
-      width: 150px;
-      height: 50px;
-      font-size: 16px;
-      margin: 5px;
-    }
-
-    /* Additional styles for the animation container */
-    #animation-container {
-      grid-column: 1 / -1;
-      text-align: center;
-    }
-
-    #animation-title {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-
-    #animation-canvas {
-      border: 1px solid #000;
-    }
+    body { margin: 0; background-color: #f0f0f0; }
+    canvas { display: block; }
   </style>
 </head>
 <body>
   <h1>Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</h1>
-
+  
   <div id="animation-container">
     <h2 id="animation-title">Photolithography Simulation</h2>
     <canvas id="animation-canvas" width="600" height="400"></canvas>
@@ -78,100 +46,36 @@
     <strong>Step 10: Repeat for Multiple Layers</strong><br>
     Optionally, these steps are repeated to create multiple layers in semiconductor devices.
   </div>
-
- 
+  
   <script>
-    const animationContainer = document.getElementById('animation-container');
-    const animationCanvas = document.getElementById('animation-canvas');
-    const animationTitle = document.getElementById('animation-title');
-
-    // Animation logic
+    // Set up the scene, camera, and renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
-    renderer.setSize(animationCanvas.width, animationCanvas.height);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    const waferGeometry = new THREE.CircleGeometry(2, 32);
-    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
-    scene.add(wafer);
+    // Create a rotating cube and add it to the scene
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
 
-    const stepperMotorGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.2);
-    const stepperMotorMaterial = new THREE.MeshPhongMaterial({ color: 0x3366cc });
-    const stepperMotor = new THREE.Mesh(stepperMotorGeometry, stepperMotorMaterial);
-    stepperMotor.position.set(0, 0, 0.1);
-    scene.add(stepperMotor);
+    // Position the camera
+    camera.position.z = 5;
 
-    const maskGeometry = new THREE.PlaneGeometry(0.8, 0.8);
-    const maskMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 });
-    const mask = new THREE.Mesh(maskGeometry, maskMaterial);
-    mask.position.set(0, 0, 0.2);
-    scene.add(mask);
-
-    const photoresistGeometry = new THREE.CircleGeometry(1.8, 32);
-    const photoresistMaterial = new THREE.MeshPhongMaterial({ color: 0xffff00, transparent: true, opacity: 0.7 });
-    const photoresist = new THREE.Mesh(photoresistGeometry, photoresistMaterial);
-    photoresist.position.set(0, 0, 0.05);
-    scene.add(photoresist);
-
-    const exposureLight = new THREE.SpotLight(0xffffff, 1, 8);
-    exposureLight.position.set(0, 0, 5);
-    scene.add(exposureLight);
-
-    const developerGeometry = new THREE.CircleGeometry(1.8, 32);
-    const developerMaterial = new THREE.MeshPhongMaterial({ color: 0x00ff00, transparent: true, opacity: 0.7 });
-    const developer = new THREE.Mesh(developerGeometry, developerMaterial);
-    developer.position.set(0, 0, 0.1);
-    scene.add(developer);
-
-    camera.position.z = 8;
-
-    let maskMoving = false;
-    let maskPositionX = 0;
-
-    // Animation loop
-    function animate() {
+    // Create an animation loop
+    const animate = () => {
       requestAnimationFrame(animate);
 
-      if (maskMoving) {
-        mask.position.x = maskPositionX;
-        maskPositionX += 0.01;
-        if (maskPositionX > 2) {
-          maskMoving = false;
-          exposePhotoresist();
-        }
-      }
-
-      photoresist.rotation.z += 0.01;
+      // Rotate the cube
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
 
       renderer.render(scene, camera);
-    }
+    };
 
     animate();
-
-    function exposePhotoresist() {
-      setTimeout(() => {
-        exposureLight.visible = false;
-        developer.visible = true;
-        developPhotoresist();
-      }, 1000);
-    }
-
-    function developPhotoresist() {
-      setTimeout(() => {
-        developer.visible = false;
-        // You can add additional steps here such as rinsing, etching, etc.
-      }, 1000);
-    }
-
-    function startExposure() {
-      maskMoving = true;
-      exposureLight.visible = true;
-    }
-
-    function goBack() {
-      window.close();
-    }
   </script>
 </body>
 </html>
