@@ -29,7 +29,7 @@ function createWindow() {
 app.whenReady().then(() => {
   const loadingWindow = new BrowserWindow({
     width: 800,
-    height: 600,
+    height: 500,
     frame: false, // Hide the frame for the loading window
     webPreferences: {
       nodeIntegration: true
@@ -56,7 +56,8 @@ function createWindow() {
       width: 1000,
       height: 1200,
       webPreferences: {
-        nodeIntegration: true
+        nodeIntegration: false,
+        contextIsolation: true,
       },
 
     });

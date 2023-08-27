@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 1</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+
   <style>
     body { margin: 0; background-color: #f0f0f0; }
     canvas { display: block; }
@@ -11,7 +11,8 @@
 </head>
 <body>
   <h1>Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</h1>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <div id="animation-container">
     <h2 id="animation-title">Photolithography Simulation</h2>
     <canvas id="animation-canvas" width="600" height="400"></canvas>
@@ -50,10 +51,9 @@
   <script>
     // Set up the scene, camera, and renderer
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('canvas-container').appendChild(renderer.domElement);
+    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("animation-canvas") });
+    renderer.setSize(600, 400);
 
     // Create a rotating cube and add it to the scene
     const geometry = new THREE.BoxGeometry();

@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>LithoLab: Learn Photolithography</title>
-  
-  <link rel="stylesheet" href="assets/styles.css"> <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <link rel="stylesheet" href="assets/styles.css"> 
   <style>
     body { margin: 0px !important; }
-    canvas { display: block  !important; }
+    canvas {width: 132px;height: 132px !important;
+    }
   </style>
   <style>
     body {
@@ -86,7 +87,8 @@
     }
   </style>
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+
+ 
 <body>
     <div class="header">
         <div class="cols">
@@ -99,6 +101,7 @@
             <h1>Demystifying EUV and DUV for Beginners to Intermediate Learners©</h1>
             <img style="width: 132px;height: 132px;" src="./assets/images/sqlogo.png">
             </div>
+            <div id="animationContainer" style="width: 400px; height: 400px;"></div>
 
             <div class="rows">
                 <button class="lesson-buttons" onclick="openLesson('Lesson 1')">1</button>
@@ -126,6 +129,40 @@
 
   </div>
   <div id="lessonContent"></div>
+  <div id="animationContainer" style="width: 132px;height: 132px;" ></div>
+
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.getElementById('animationContainer').appendChild(renderer.domElement);
+
+    // Create a simple cube
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Animation function
+    function animate() {
+      requestAnimationFrame(animate);
+
+      // Rotate the cube
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <script>
     function changeLanguage() {
@@ -154,10 +191,7 @@
   lessonFrame.src = 'lessons/' + lessonFileName;
 }
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const languageDropdown = document.getElementById('language');
-    languageDropdown.addEventListener('change', initializePage);
-  });
+
     function updateContent(language) {
   const lessonButtons = document.querySelectorAll('.lesson-buttons button');
 
@@ -250,5 +284,7 @@ function openLesson(lessonName) {
     });
 }
   </script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+
+  <script>   openLesson('Home')</script>
 </body>
 </html>
