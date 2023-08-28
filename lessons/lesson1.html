@@ -7,6 +7,9 @@
   <style>
     body { margin: 0; background-color: #f0f0f0; }
     canvas { display: block; }
+    #animation-container { position: relative; width: 600px; height: 400px; perspective: 1000px; }
+    #animation-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+  
   </style>
 </head>
 <body>
@@ -15,7 +18,7 @@
 
   <div id="animation-container">
     <h2 id="animation-title">Photolithography Simulation</h2>
-    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation1.html" frameborder="0" allowfullscreen></iframe>
     <button onclick="goBack()">Back</button>
     <strong>Step 1: Substrate Preparation</strong><br>
     A silicon wafer is cleaned and chemically treated to remove impurities and create a smooth surface.
@@ -49,11 +52,9 @@
   </div>
   
   <script>
-    // Set up the scene, camera, and renderer
+    // Set up the scene and camera
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("animation-canvas") });
-    renderer.setSize(600, 400);
 
     // Create a rotating cube and add it to the scene
     const geometry = new THREE.BoxGeometry();
@@ -64,6 +65,11 @@
     // Position the camera
     camera.position.z = 5;
 
+    // Create a CSS3DRenderer
+    const renderer = new THREE.CSS3DRenderer();
+    renderer.setSize(600, 400);
+    document.getElementById("animation-canvas").appendChild(renderer.domElement);
+
     // Create an animation loop
     const animate = () => {
       requestAnimationFrame(animate);
@@ -72,6 +78,7 @@
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
 
+      // Render using CSS3DRenderer
       renderer.render(scene, camera);
     };
 

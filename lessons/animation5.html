@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; background-color: #f0f0f0; }
+    #animation-container { position: relative; width: 800px; height: 600px; perspective: 1000px; }
+    #animation-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Create a light source (sphere)
+    const lightGeometry = new THREE.SphereGeometry(0.1, 32, 32);
+    const lightMaterial = new THREE.MeshBasicMaterial({ color: 0xffff00 });
+    const lightSource = new THREE.Mesh(lightGeometry, lightMaterial);
+    lightSource.position.set(0, 1, 3); // Adjust position
+    scene.add(lightSource);
+
+    // Create a photomask (plane)
+    const maskGeometry = new THREE.PlaneGeometry(2, 2);
+    const maskMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+    const photomask = new THREE.Mesh(maskGeometry, maskMaterial);
+    photomask.position.z = -1; // Adjust position
+    scene.add(photomask);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Move the light source to simulate illumination
+      lightSource.position.x = Math.sin(Date.now() * 0.001) * 2;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
+</html>

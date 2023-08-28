@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Set up the scene and camera
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+
+    // Create a rotating cube and add it to the scene
+    const geometry = new THREE.BoxGeometry();
+    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+
+    // Position the camera
+    camera.position.z = 5;
+
+    // Create a WebGLRenderer
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(600, 400);
+    document.body.appendChild(renderer.domElement);
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Rotate the cube
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+
+      // Render using WebGLRenderer
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
+</body>
+</html>

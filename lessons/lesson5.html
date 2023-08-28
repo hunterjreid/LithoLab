@@ -16,7 +16,7 @@
 
   <div id="animation-container">
     <h2 id="animation-title">Exposure Systems and Light Sources</h2>
-    <canvas id="animation-canvas" width="600" height="400"></canvas>
+    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation5.html" frameborder="0" allowfullscreen></iframe>
     <button onclick="goBack()">Back</button>
     <strong>Exposure Systems and Light Sources</strong><br>
     Exposure systems are critical in photolithography, and they use various light sources to expose patterns on the wafer.
@@ -40,59 +40,6 @@
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
-  <script>
-    const animationContainer = document.getElementById('animation-container');
-    const animationCanvas = document.getElementById('animation-canvas');
-    const animationTitle = document.getElementById('animation-title');
 
-    // Animation logic
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
-    renderer.setSize(animationCanvas.width, animationCanvas.height);
-
-    // Add objects and animation logic here
-    const reticleGeometry = new THREE.PlaneGeometry(4, 4);
-    const reticleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
-    const reticle = new THREE.Mesh(reticleGeometry, reticleMaterial);
-    scene.add(reticle);
-
-    const waferGeometry = new THREE.CircleGeometry(2, 32);
-    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
-    scene.add(wafer);
-
-    const lightGeometry = new THREE.SphereGeometry(0.2, 8, 8);
-    const lightMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-    const light1 = new THREE.Mesh(lightGeometry, lightMaterial);
-    const light2 = new THREE.Mesh(lightGeometry, lightMaterial);
-
-    scene.add(light1);
-    scene.add(light2);
-
-    light1.position.set(-3, 2, 5);
-    light2.position.set(3, -2, 5);
-
-    camera.position.z = 8;
-
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
-
-      reticle.rotation.z += 0.005;
-      light1.position.x = Math.sin(Date.now() * 0.002) * 3;
-      light1.position.y = Math.cos(Date.now() * 0.002) * 2;
-      light2.position.x = -Math.sin(Date.now() * 0.002) * 3;
-      light2.position.y = -Math.cos(Date.now() * 0.002) * 2;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
-    function goBack() {
-      window.close();
-    }
-  </script>
 </body>
 </html>

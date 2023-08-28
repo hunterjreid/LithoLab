@@ -93,15 +93,16 @@
     <div class="header">
         <div class="cols">
 
-
-            <div class="rows">
+        
+   
+            <div class="cols">
             <button class="lesson-button3" onclick="openLesson('Home')">Home</button>
         
             <h1>LithoLab</h1>
             <h1>Demystifying EUV and DUV for Beginners to Intermediate Learners©</h1>
             <img style="width: 132px;height: 132px;" src="./assets/images/sqlogo.png">
             </div>
-            <div id="animationContainer" style="width: 400px; height: 400px;"></div>
+        
 
             <div class="rows">
                 <button class="lesson-buttons" onclick="openLesson('Lesson 1')">1</button>
@@ -131,15 +132,12 @@
   <div id="lessonContent"></div>
   <div id="animationContainer" style="width: 132px;height: 132px;" ></div>
 
-  <script>
-    // Set up the scene, camera, and renderer
+    <script>
+    // Set up the scene and camera
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('animationContainer').appendChild(renderer.domElement);
+    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
 
-    // Create a simple cube
+    // Create a rotating cube and add it to the scene
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
@@ -148,41 +146,29 @@
     // Position the camera
     camera.position.z = 5;
 
-    // Animation function
-    function animate() {
+    // Create a CSS3DRenderer
+    const renderer = new THREE.CSS3DRenderer();
+    renderer.setSize(600, 400);
+    document.getElementById("animation-canvas").appendChild(renderer.domElement);
+
+    // Create an animation loop
+    const animate = () => {
       requestAnimationFrame(animate);
 
       // Rotate the cube
       cube.rotation.x += 0.01;
       cube.rotation.y += 0.01;
 
+      // Render using CSS3DRenderer
       renderer.render(scene, camera);
-    }
+    };
 
     animate();
   </script>
-
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <script>
-    function changeLanguage() {
-      const languageDropdown = document.getElementById('language');
-      const selectedLanguage = languageDropdown.value;
 
-      // You can add code here to handle the selected language
-      // For example, you can use JavaScript to change the text on the buttons or load different content based on the language.
-      if (selectedLanguage === 'english') {
-        updateContent('english');
-      } else if (selectedLanguage === 'spanish') {
-        updateContent('spanish');
-      }
-    }  function initializePage() {
-    const languageDropdown = document.getElementById('language');
-    const selectedLanguage = languageDropdown.value;
-    openLesson('Home')
-
-    updateContent(selectedLanguage);
-  }
 
   function openLesson(lessonName) {
   const lessonFrame = document.getElementById('lessonFrame');
@@ -192,83 +178,6 @@
 }
 
 
-    function updateContent(language) {
-  const lessonButtons = document.querySelectorAll('.lesson-buttons button');
-
-  const translations = {
-    'Lesson 1': {
-      'english': 'Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing',
-      'spanish': 'Lección 1: Introducción a la Fotolitografía y Fabricación de Semiconductores'
-    },
-    'Lesson 2': {
-      'english': 'Lesson 2: Optical Lithography Fundamentals',
-      'spanish': 'Lección 2: Fundamentos de la Litografía Óptica'
-    },
-    'Lesson 3': {
-      'english': 'Lesson 3: Photoresists and Their Applications',
-      'spanish': 'Lección 3: Fotorresinas y sus Aplicaciones'
-    },
-    'Lesson 4': {
-      'english': 'Lesson 4: Photomasks and Reticles',
-      'spanish': 'Lección 4: Fotomáscaras y Retículas'
-    },
-    'Lesson 5': {
-      'english': 'Lesson 5: Exposure Systems and Light Sources',
-      'spanish': 'Lección 5: Sistemas de Exposición y Fuentes de Luz'
-    },
-    'Lesson 6': {
-      'english': 'Lesson 6: Photoresist Patterning Techniques',
-      'spanish': 'Lección 6: Técnicas de Patrón de Fotorresist'
-    },
-    'Lesson 7': {
-      'english': 'Lesson 7: Developing and Etching Processes',
-      'spanish': 'Lección 7: Procesos de Revelado y Grabado'
-    },
-    'Lesson 8': {
-      'english': 'Lesson 8: Resolution Enhancement Techniques',
-      'spanish': 'Lección 8: Técnicas de Mejora de la Resolución'
-    },
-    'Lesson 9': {
-      'english': 'Lesson 9: Alignment and Overlay Strategies',
-      'spanish': 'Lección 9: Estrategias de Alineación y Superposición'
-    },
-    'Lesson 10': {
-      'english': 'Lesson 10: Emerging Trends in Photolithography',
-      'spanish': 'Lección 10: Tendencias Emergentes en Fotolitografía'
-    },
-    // Add translations for other lessons
-  };
-
-  lessonButtons.forEach(button => {
-    const lessonName = button.textContent.trim();
-    button.textContent = translations[lessonName][language];
-  });
-
-  // Update other content here...
-
-  const headings = document.querySelectorAll('h2, h3, h4');
-
-  const headingTranslations = {
-    'https://github.com/hunterjreid/LithoLab': {
-      'english': 'https://github.com/hunterjreid/LithoLab',
-      'spanish': 'https://github.com/hunterjreid/LithoLab'
-    },
-    'Desktop app for lithography learning available for Windows, macOS, and Linux': {
-      'english': 'Desktop app for lithography learning available for Windows, macOS, and Linux',
-      'spanish': 'Aplicación de escritorio para el aprendizaje de la litografía disponible para Windows, macOS y Linux'
-    },
-    'Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.': {
-      'english': 'Photolithography is a process used to create patterns on the surface of a material. It is often performed at the nanoscale, where dimensions are measured in nanometers (billionths of a meter). At this scale, the laws of physics behave differently, so it can be difficult to understand how lithography works.',
-      'spanish': 'La fotolitografía es un proceso utilizado para crear patrones en la superficie de un material. A menudo se realiza a nivel nanométrico, donde las dimensiones se miden en nanómetros (milmillonésimas de metro). A esta escala, las leyes de la física se comportan de manera diferente, por lo que puede ser difícil comprender cómo funciona la litografía.'
-    },
-    // Add translations for other headings
-  };
-
-  headings.forEach(heading => {
-    const originalText = heading.textContent.trim();
-    heading.textContent = headingTranslations[originalText][language];
-  });
-}
 
 function openLesson(lessonName) {
   const lessonContentDiv = document.getElementById('lessonContent');
@@ -283,7 +192,7 @@ function openLesson(lessonName) {
       console.error('Error fetching lesson content:', error);
     });
 }
-  </script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  </script> 
 
   <script>   openLesson('Home')</script>
 </body>

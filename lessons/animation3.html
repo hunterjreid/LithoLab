@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; background-color: #f0f0f0; }
+    #animation-container { position: relative; perspective: 1000px; }
+    #animation-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+  <h1>Photolithography Animation</h1>
+
+  <div id="animation-container">
+    <h2 id="animation-title">Photolithography Simulation</h2>
+    <div id="animation-content">
+      <canvas id="animation-canvas"></canvas>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // Set up the scene, camera, and renderer
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 800 / 600, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("animation-canvas") });
+    renderer.setSize(800, 600);
+
+    // Create a substrate (wafer) and add it to the scene
+    const substrateGeometry = new THREE.PlaneGeometry(6, 4);
+    const substrateMaterial = new THREE.MeshBasicMaterial({ color: 0xaaaaaa });
+    const substrate = new THREE.Mesh(substrateGeometry, substrateMaterial);
+    scene.add(substrate);
+
+    // Create a mask-like geometry and add it to the scene
+    const maskGeometry = new THREE.PlaneGeometry(2, 2);
+    const maskMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, transparent: true, opacity: 0.5 });
+    const mask = new THREE.Mesh(maskGeometry, maskMaterial);
+    mask.position.z = 0.1;
+    scene.add(mask);
+
+    // Create a point light source
+    const light = new THREE.PointLight(0xffffff);
+    light.position.set(0, 0, 5);
+    scene.add(light);
+
+    // Position the camera
+    camera.position.z = 8;
+
+    // Create an animation loop
+    const animate = () => {
+      requestAnimationFrame(animate);
+
+      // Move the mask along the x-axis to simulate exposure
+      mask.position.x = Math.sin(Date.now() * 0.001) * 2;
+
+      renderer.render(scene, camera);
+    };
+
+    animate();
+  </script>
+</body>
+</html>
