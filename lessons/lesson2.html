@@ -6,46 +6,161 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
     body { margin: 0; background-color: #f0f0f0; }
-    canvas { display: block; }
+    canvas { display: block; }  .bold {
+    font-weight: bold;
+  }
+  .italic {
+    font-style: italic;
+  }  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  .underline {
+    text-decoration: underline;
+  }
   </style>
 </head>
 <body>
   <h1>Lesson 2: Optical Lithography Fundamentals</h1>
   
   <div id="animation-container">
-    <h2 id="animation-title">Optical Lithography Simulation</h2>
-    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation2.html" frameborder="0" allowfullscreen></iframe>
-    <button onclick="goBack()">Back</button>
-    <strong>Step 1: Wafer Preparation</strong><br>
-    A silicon wafer is thoroughly cleaned and prepared to ensure a defect-free surface.
+    <h1 style="font-size: 16px;margin-bottom: 10px;">TLDR: <I>we go over x y and x in this section</I></h1>
+    <div style="width: 100%;
+    display: flex;
+    justify-content: center;">
+        <iframe id="animation-iframe" width="600" height="400" src="lessons/animation2.html" frameborder="0" allowfullscreen></iframe>
 
-    <strong>Step 2: Photoresist Coating</strong><br>
-    A layer of light-sensitive photoresist is applied to the wafer's surface.
+    </div>
 
-    <strong>Step 3: Photomask Design</strong><br>
-    A photomask with the desired circuit pattern is created using advanced techniques.
+    <h1>Let's drive into it.</h1>
 
-    <strong>Step 4: Photomask Alignment</strong><br>
-    The photomask is precisely aligned over the photoresist-coated wafer.
 
-    <strong>Step 5: Exposure</strong><br>
-    UV light is shined through the photomask, transferring the pattern onto the photoresist.
+    
+<h2 class="bold">What is Optical Lithography?</h2>
+<p>Optical lithography, also known as photolithography, is a fundamental process in semiconductor manufacturing that enables the creation of intricate circuit patterns on silicon wafers. This process is crucial for producing integrated circuits (ICs), which are the building blocks of electronic devices such as computers, smartphones, and more.</p>
 
-    <strong>Step 6: Development</strong><br>
-    The exposed photoresist is chemically developed, leaving behind the pattern.
+<h2 class="bold">Why is it Important?</h2>
+<p>Optical lithography's significance lies in its ability to define extremely small features on semiconductor wafers, which is essential for packing more transistors and other components into a limited space. As devices become smaller and more powerful, the semiconductor industry's continuous advancement is largely driven by improvements in lithography techniques.</p>
 
-    <strong>Step 7: Etching</strong><br>
-    The exposed areas of the wafer are etched to create the desired structures.
 
-    <strong>Step 8: Photoresist Stripping</strong><br>
-    The remaining photoresist is removed from the wafer.
+<!-- Step 1: Wafer Preparation -->
+<h2 class="bold">Step 1: Wafer Preparation</h2>
+<ul>
+  <li>A silicon wafer is thoroughly cleaned and prepared to ensure a defect-free surface.</li>
+</ul>
 
-    <strong>Step 9: Inspection</strong><br>
-    The wafer undergoes rigorous inspection to ensure quality and accuracy.
+<!-- Step 2: Photoresist Coating -->
+<h2 class="bold">Step 2: Photoresist Coating</h2>
+<ul>
+  <li>A layer of light-sensitive <span class="italic">photoresist</span> is applied to the wafer's surface.</li>
+</ul>
 
-    <strong>Step 10: Repeat for Multiple Layers</strong><br>
-    The process is repeated to build multiple layers in semiconductor devices.
-  </div>
+<!-- Step 3: Photomask Design -->
+<h2 class="bold">Step 3: Photomask Design</h2>
+<ul>
+  <li>A <span class="italic">photomask</span> with the desired circuit pattern is created using advanced techniques.</li>
+</ul>
+
+<!-- Step 4: Photomask Alignment -->
+<h2 class="bold">Step 4: Photomask Alignment</h2>
+<ul>
+  <li>The photomask is precisely aligned over the photoresist-coated wafer.</li>
+</ul>
+
+<!-- Step 5: Exposure -->
+<h2 class="bold">Step 5: Exposure</h2>
+<ul>
+  <li>UV light is shined through the photomask, transferring the pattern onto the photoresist.</li>
+</ul>
+
+<!-- Step 6: Development -->
+<h2 class="bold">Step 6: Development</h2>
+<ul>
+  <li>The exposed photoresist is chemically developed, leaving behind the pattern.</li>
+</ul>
+
+<!-- Step 7: Etching -->
+<h2 class="bold">Step 7: Etching</h2>
+<ul>
+  <li>The exposed areas of the wafer are etched to create the desired structures.</li>
+</ul>
+
+<!-- Step 8: Photoresist Stripping -->
+<h2 class="bold">Step 8: Photoresist Stripping</h2>
+<ul>
+  <li>The remaining photoresist is removed from the wafer.</li>
+</ul>
+
+<!-- Step 9: Inspection -->
+<h2 class="bold">Step 9: Inspection</h2>
+<ul>
+  <li>The wafer undergoes rigorous inspection to ensure quality and accuracy.</li>
+</ul>
+
+<h2 class="bold">How Does it Work?</h2>
+<div class="table-container">
+  <table>
+    <tr>
+      <th>Step</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Wafer Preparation:</strong> The process begins with a silicon wafer, a thin circular slice of crystalline silicon. The wafer undergoes thorough cleaning using chemical and mechanical processes to remove any particles or contaminants that could negatively impact subsequent steps. A defect-free surface is crucial for accurate pattern transfer.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Photoresist Coating:</strong> A thin layer of <span class="italic">photoresist</span> is applied to the wafer's surface. Photoresist is a light-sensitive material that undergoes a chemical change when exposed to UV light. It acts as a temporary mask, protecting the underlying silicon during the etching process.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Photomask Design:</strong> The photomask, also known as a reticle, is a glass plate with a precise pattern of opaque and transparent regions. The photomask is designed using sophisticated software and techniques. The pattern on the photomask corresponds to the desired circuit features that will be transferred onto the wafer.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Photomask Alignment:</strong> Achieving precise alignment between the photomask and the wafer is critical for pattern accuracy. Advanced alignment systems ensure that the photomask's pattern is aligned with existing features on the wafer. This alignment guarantees that the final circuit components are placed accurately.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Exposure:</strong> During the exposure step, UV light is directed through the photomask onto the photoresist-coated wafer. The areas of the photoresist exposed to light undergo a chemical reaction that changes their solubility. This exposed photoresist becomes either more soluble or less soluble, depending on the type of photoresist used.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Development:</strong> After exposure, the wafer is treated with a developer solution that selectively removes the soluble portions of the photoresist. This reveals the underlying silicon in the areas that were exposed to light, creating a patterned photoresist mask that serves as a guide for subsequent etching.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Etching:</strong> The etching process removes material from the exposed areas of the silicon wafer. There are two main types of etching: wet etching, which involves using chemical solutions, and dry etching, which employs plasma. The etching process transfers the pattern from the photoresist mask to the silicon, creating the desired circuit structures.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Photoresist Stripping:</strong> Once the etching process is complete, the remaining photoresist is removed from the wafer. This step is crucial to ensure the final circuit structures are not obstructed by residual photoresist. Various chemical processes and treatments are used to strip the photoresist while preserving the integrity of the fabricated structures.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Inspection:</strong> The wafer undergoes rigorous inspection using advanced metrology tools. These tools measure the dimensions, alignment, and other critical parameters of the fabricated structures. Inspection helps ensure the quality, accuracy, and functionality of the semiconductor device. Defects or deviations from specifications can lead to performance issues or device failure.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Repeat for Multiple Layers:</strong> Many modern semiconductor devices require multiple layers of intricate patterns to function optimally. The entire lithography process, including the design of new photomasks, is repeated for each layer. This layering enables the creation of complex and highly integrated semiconductor components.</td>
+    </tr>
+  </table>
+</div>
+<!-- Step 10: Repeat for Multiple Layers -->
+<h2 class="bold">Step 10: Repeat for Multiple Layers</h2>
+<ul>
+  <li>The process is repeated to build multiple layers in semiconductor devices.</li>
+</ul>
+
+<h2 class="bold">Conclusion</h2>
+<p>Optical lithography is a complex process that plays a crucial role in modern semiconductor manufacturing, allowing for the creation of intricate electronic components.</p>
+        
+<button style="margin-left: 0px; margin-top: 20px;">Scroll to Top</button></div>
   
   <script>
     // Animation logic

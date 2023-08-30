@@ -3,23 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 1</title>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
     body { margin: 0; background-color: #f0f0f0; }
-    canvas { display: block; }
-    #animation-container { position: relative; width: 600px; height: 400px; perspective: 1000px; }
-    #animation-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
-  
+    canvas { display: block; }  
+    .bold {
+      font-weight: bold;
+    }
+    .italic {
+      font-style: italic;
+    }  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    .underline {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <h1>Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</h1>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+  
   <div id="animation-container">
-    <h2 id="animation-title">Photolithography Simulation</h2>
-    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation1.html" frameborder="0" allowfullscreen></iframe>
-    <button onclick="goBack()">Back</button>
+    <h1 style="font-size: 16px;margin-bottom: 10px;">TLDR: <i>We explore the basics of photolithography and its role in semiconductor manufacturing.</i></h1>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <iframe id="animation-iframe" width="600" height="400" src="lessons/animation1.html" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h1>Let's Get Started.</h1>
+    
+    <h2 class="bold">What is Photolithography?</h2>
+    <p>Photolithography, a critical process in semiconductor manufacturing, involves transferring intricate patterns onto silicon wafers using light-sensitive materials. This technique is essential for creating the microscopic circuits that power modern electronics.</p>
+
+    <h2 class="bold">Why Learn About Photolithography?</h2>
+    <p>Understanding photolithography is key to comprehending how semiconductor devices are made. It's the foundation for producing computer chips, memory modules, and countless electronic components found in everyday gadgets.</p>
+
+    <h2 class="bold">Key Steps in Photolithography</h2>
+    <p>Photolithography consists of several sequential steps, each contributing to the creation of intricate semiconductor structures:</p>
+    <ol>
+      <li>Wafer Preparation</li>
+      <li>Photoresist Coating</li>
+      <li>Photomask Design</li>
+      <li>Photomask Alignment</li>
+      <li>Exposure</li>
+      <li>Development</li>
+      <li>Etching</li>
+      <li>Photoresist Stripping</li>
+      <li>Inspection</li>
+      <li>Repeat for Multiple Layers</li>
+    </ol>
+    <p>These steps collectively form the foundation of semiconductor manufacturing.</p>
+
     <strong>Step 1: Substrate Preparation</strong><br>
     A silicon wafer is cleaned and chemically treated to remove impurities and create a smooth surface.
 
@@ -49,40 +89,55 @@
 
     <strong>Step 10: Repeat for Multiple Layers</strong><br>
     Optionally, these steps are repeated to create multiple layers in semiconductor devices.
-  </div>
+
+    <h2 class="bold">Conclusion</h2>
+    <p>Photolithography is a crucial process that enables the creation of intricate patterns on semiconductor wafers, forming the basis of modern electronics. As we delve deeper into this subject, we'll uncover the fascinating intricacies of each step and its role in shaping the technology that powers our world.</p>
+        
+    <button style="margin-left: 0px; margin-top: 20px;">Scroll to Top</button>
+
+
+</div>
   
   <script>
-    // Set up the scene and camera
+    // Animation logic
+    const animationContainer = document.getElementById('animation-container');
+    const animationCanvas = document.getElementById('animation-canvas');
+    const animationTitle = document.getElementById('animation-title');
+
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
+    renderer.setSize(animationCanvas.width, animationCanvas.height);
 
-    // Create a rotating cube and add it to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    const waferGeometry = new THREE.CircleGeometry(2, 32);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    scene.add(wafer);
 
-    // Position the camera
-    camera.position.z = 5;
+    const circuitGeometry = new THREE.CircleGeometry(1, 32);
+    const circuitMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
+    const circuit = new THREE.Mesh(circuitGeometry, circuitMaterial);
+    circuit.position.set(0, 0, 0.1);
+    scene.add(circuit);
 
-    // Create a CSS3DRenderer
-    const renderer = new THREE.CSS3DRenderer();
-    renderer.setSize(600, 400);
-    document.getElementById("animation-canvas").appendChild(renderer.domElement);
+    const light = new THREE.SpotLight(0xffffff, 1, 10);
+    light.position.set(0, 0, 5);
+    scene.add(light);
 
-    // Create an animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
+    camera.position.z = 8;
 
-      // Rotate the cube
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+    let isExposing = false;
+    let exposureTime = 0;
 
-      // Render using CSS3DRenderer
-      renderer.render(scene, camera);
-    };
+    // Function to go back
+    function goBack() {
+      // Your goBack function implementation here
+    }
 
-    animate();
+    // Additional content (if needed)
   </script>
 </body>
 </html>
+
+
+  
