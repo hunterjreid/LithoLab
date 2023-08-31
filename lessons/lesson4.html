@@ -3,78 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 4</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
     body { margin: 0; background-color: #f0f0f0; }
-    canvas { display: block; }
+    canvas { display: block; }  
+    .bold {
+      font-weight: bold;
+    }
+    .italic {
+      font-style: italic;
+    }  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    .underline {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>Lesson 4: Photomasks and Reticles</h1>
-
+  <h1>Lesson 4: Photomasks and Reticles in Photolithography</h1>
+  
   <div id="animation-container">
-    <h2 id="animation-title">Photomasks and Reticles</h2>
-    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation4.html" frameborder="0" allowfullscreen></iframe>
-    <button onclick="goBack()">Back</button>
-    <strong>Photomasks and Reticles</strong><br>
-    Photomasks, also known as masks or reticles, are essential components in photolithography. They contain patterns that are transferred onto the wafer during the exposure process.
+    <h1 style="font-size: 16px;margin-bottom: 10px;">TLDR: <I>we delve into photomasks, reticles, and their significance in this section</I></h1>
+    <div style="width: 100%;
+    display: flex;
+    justify-content: center;">
+        <iframe id="animation-iframe" width="600" height="400" src="lessons/animation4.html" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-    <strong>Step 1: Design and Fabrication</strong><br>
-    Photomasks are designed using specialized software. The patterns are then transferred onto a glass substrate coated with a chrome layer through a process called mask fabrication.
+    <h1>Let's explore the world of Photomasks and Reticles.</h1>
+    
+<h2 class="bold">Understanding Photomasks and Reticles</h2>
+<p>In the realm of photolithography, photomasks and reticles are crucial tools used to define intricate circuit patterns on semiconductor wafers. These patterns guide the creation of integrated circuits (ICs) that power a wide array of electronic devices.</p>
 
-    <strong>Step 2: Alignment and Registration</strong><br>
-    During the lithography process, the photomask is aligned and registered precisely with the wafer to ensure accurate pattern transfer.
+<h2 class="bold">The Role of Photomasks</h2>
+<p>A photomask, also known as a reticle, is a glass plate bearing a meticulously designed pattern of opaque and transparent regions. It serves as a stencil for transferring the circuit pattern onto a silicon wafer during the photolithography process.</p>
 
-    <strong>Step 3: Exposure</strong><br>
-    The photomask is placed in the exposure system, and light shines through it onto the wafer, transferring the pattern onto the photoresist.
+<h2 class="bold">Significance in Semiconductor Manufacturing</h2>
+<p>The precision and accuracy of photomasks and reticles are paramount in semiconductor manufacturing. The intricate patterns etched onto these plates directly influence the final electronic components' performance and functionality. As device features continue to shrink, photomask fabrication techniques play a pivotal role in pushing the boundaries of technology.</p>
 
-    <strong>Step 4: Reticles in Advanced Lithography</strong><br>
-    In advanced lithography techniques such as multi-patterning, multiple reticles are used to create complex patterns.
+<h2 class="bold">Photomask Fabrication</h2>
+<p>The creation of photomasks involves advanced manufacturing techniques:</p>
+<ul>
+  <li>High-resolution electron beam lithography is used to define patterns on a mask blank.</li>
+  <li>Chemical processes etch the mask blank, creating the desired pattern.</li>
+  <li>Quality control ensures accuracy and pattern fidelity.</li>
+</ul>
 
-    <strong>Applications</strong><br>
-    Photomasks are used extensively in the semiconductor industry for manufacturing integrated circuits and microelectronic devices.
+<h2 class="bold">Photomask Alignment and Accuracy</h2>
+<p>Precise alignment of the photomask with the wafer is essential for accurate pattern transfer. Advanced alignment systems guarantee that the photomask's pattern corresponds precisely with the existing features on the wafer. This alignment process contributes to the creation of reliable and high-performance electronic devices.</p>
 
-    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
-  </div>
+<h2 class="bold">Conclusion</h2>
+<p>Photomasks and reticles are fundamental tools in photolithography, enabling the fabrication of intricate circuit patterns on semiconductor wafers. Their role in defining precise patterns paves the way for the creation of advanced and powerful electronic devices.</p>
+        
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+
+
+</div>
+  
   <script>
+    // Animation logic
     const animationContainer = document.getElementById('animation-container');
     const animationCanvas = document.getElementById('animation-canvas');
     const animationTitle = document.getElementById('animation-title');
 
-    // Animation logic
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
     renderer.setSize(animationCanvas.width, animationCanvas.height);
-
-    // Add objects and animation logic here
-    const reticleGeometry = new THREE.PlaneGeometry(4, 4);
-    const reticleMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, transparent: true, opacity: 0.5 });
-    const reticle = new THREE.Mesh(reticleGeometry, reticleMaterial);
-    scene.add(reticle);
 
     const waferGeometry = new THREE.CircleGeometry(2, 32);
     const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
     const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
     scene.add(wafer);
 
+    const circuitGeometry = new THREE.CircleGeometry(1, 32);
+    const circuitMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
+    const circuit = new THREE.Mesh(circuitGeometry, circuitMaterial);
+    circuit.position.set(0, 0, 0.1);
+    scene.add(circuit);
+
+    const light = new THREE.SpotLight(0xffffff, 1, 10);
+    light.position.set(0, 0, 5);
+    scene.add(light);
+
     camera.position.z = 8;
 
-    // Animation loop
-    function animate() {
-      requestAnimationFrame(animate);
+    let isExposing = false;
+    let exposureTime = 0;
 
-      reticle.rotation.z += 0.005;
-
-      renderer.render(scene, camera);
-    }
-
-    animate();
-
+    // Function to go back
     function goBack() {
-      window.close();
+      // Your goBack function implementation here
     }
+
+    // Additional content (if needed)
   </script>
 </body>
 </html>

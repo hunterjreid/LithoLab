@@ -2,64 +2,57 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Photolithography 101 - Lesson 8</title>
+  <title>Photolithography 101 - Lesson 7</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
     body { margin: 0; background-color: #f0f0f0; }
     canvas { display: block; }
+    .bold {
+      font-weight: bold;
+    }
+    .italic {
+      font-style: italic;
+    }  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    .underline {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <h1>Lesson 7: Resolution Enhancement Techniques</h1>
   
-  <div id="canvas-container"></div>
-  
-  <div id="lesson-content">
-    <h2>Introduction to Resolution Enhancement</h2>
+  <div id="animation-container">
+    <h1 style="font-size: 16px; margin-bottom: 10px;"><i>TLDR: we explore techniques to enhance resolution in photolithography</i></h1>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <iframe id="animation-iframe" width="600" height="400" src="lessons/animation8.html" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2 class="bold">Introduction to Resolution Enhancement</h2>
     <p>Resolution enhancement techniques are employed in photolithography to overcome the limitations of diffraction and improve the achievable resolution of patterns. These techniques play a crucial role in enabling the fabrication of smaller and more intricate structures.</p>
-    
-    <h2>Optical Proximity Correction (OPC)</h2>
+
+    <h2 class="bold">Optical Proximity Correction (OPC)</h2>
     <p>OPC involves modifying the mask patterns to compensate for the distortion introduced during the imaging process. By reshaping the features on the mask, the final pattern can be optimized to achieve more accurate dimensions.</p>
-    
-    <h2>Phase-Shifting Masks</h2>
+
+    <h2 class="bold">Phase-Shifting Masks</h2>
     <p>Phase-shifting masks use varying degrees of phase shifts to manipulate the interference of light waves. This results in constructive or destructive interference, enhancing the contrast and resolution of patterns.</p>
-    
-    <h2>Sub-Resolution Assist Features (SRAFs)</h2>
+
+    <h2 class="bold">Sub-Resolution Assist Features (SRAFs)</h2>
     <p>SRAFs are small auxiliary features added near main features to improve process latitude and pattern fidelity. They help to control the distribution of light and reduce the impact of diffraction effects.</p>
-    
-    <h2>Multiple Patterning</h2>
+
+    <h2 class="bold">Multiple Patterning</h2>
     <p>Multiple patterning techniques involve splitting a complex pattern into multiple simpler patterns that can be individually patterned with higher resolution. This enables the creation of sub-resolution features.</p>
   </div>
-  
-  <script>
-    // Set up the scene, camera, and renderer
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    // Create a rotating cube and add it to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+  <!-- No JavaScript included in this version -->
 
-    // Position the camera
-    camera.position.z = 5;
-
-    // Create an animation loop
-    const animate = () => {
-      requestAnimationFrame(animate);
-
-      // Rotate the cube
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-  </script>
 </body>
 </html>

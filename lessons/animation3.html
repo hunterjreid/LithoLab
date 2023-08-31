@@ -3,27 +3,21 @@
 <head>
   <style>
     body { margin: 0; background-color: #f0f0f0; }
-    #animation-container { position: relative; perspective: 1000px; }
-    #animation-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    body { margin: 0; }
+    canvas { display: block; }
   </style>
 </head>
 <body>
-  <h1>Photolithography Animation</h1>
 
-  <div id="animation-container">
-    <h2 id="animation-title">Photolithography Simulation</h2>
-    <div id="animation-content">
-      <canvas id="animation-canvas"></canvas>
-    </div>
-  </div>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     // Set up the scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 800 / 600, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("animation-canvas") });
-    renderer.setSize(800, 600);
+    // Create a WebGLRenderer
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(600, 400);
+    document.body.appendChild(renderer.domElement);
 
     // Create a substrate (wafer) and add it to the scene
     const substrateGeometry = new THREE.PlaneGeometry(6, 4);

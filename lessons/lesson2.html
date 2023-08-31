@@ -160,45 +160,10 @@
 <h2 class="bold">Conclusion</h2>
 <p>Optical lithography is a complex process that plays a crucial role in modern semiconductor manufacturing, allowing for the creation of intricate electronic components.</p>
         
-<button style="margin-left: 0px; margin-top: 20px;">Scroll to Top</button></div>
+
+
+</div>
   
-  <script>
-    // Animation logic
-    const animationContainer = document.getElementById('animation-container');
-    const animationCanvas = document.getElementById('animation-canvas');
-    const animationTitle = document.getElementById('animation-title');
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
-    renderer.setSize(animationCanvas.width, animationCanvas.height);
-
-    const waferGeometry = new THREE.CircleGeometry(2, 32);
-    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
-    scene.add(wafer);
-
-    const circuitGeometry = new THREE.CircleGeometry(1, 32);
-    const circuitMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
-    const circuit = new THREE.Mesh(circuitGeometry, circuitMaterial);
-    circuit.position.set(0, 0, 0.1);
-    scene.add(circuit);
-
-    const light = new THREE.SpotLight(0xffffff, 1, 10);
-    light.position.set(0, 0, 5);
-    scene.add(light);
-
-    camera.position.z = 8;
-
-    let isExposing = false;
-    let exposureTime = 0;
-
-    // Function to go back
-    function goBack() {
-      // Your goBack function implementation here
-    }
-
-    // Additional content (if needed)
-  </script>
 </body>
 </html>

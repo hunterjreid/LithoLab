@@ -3,43 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <title>Photolithography 101 - Lesson 5</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
   <style>
-    canvas { display: block; }
- 
     body { margin: 0; background-color: #f0f0f0; }
-    canvas { display: block; }
-
+    canvas { display: block; }  
+    .bold {
+      font-weight: bold;
+    }
+    .italic {
+      font-style: italic;
+    }  
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    .underline {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <h1>Lesson 5: Exposure Systems and Light Sources</h1>
-
+  
   <div id="animation-container">
-    <h2 id="animation-title">Exposure Systems and Light Sources</h2>
-    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation5.html" frameborder="0" allowfullscreen></iframe>
-    <button onclick="goBack()">Back</button>
-    <strong>Exposure Systems and Light Sources</strong><br>
-    Exposure systems are critical in photolithography, and they use various light sources to expose patterns on the wafer.
+    <h1 style="font-size: 16px; margin-bottom: 10px;"><i>TLDR: we explore exposure systems, light sources, and their importance</i></h1>
+    <div style="width: 100%; display: flex; justify-content: center;">
+      <iframe id="animation-iframe" width="600" height="400" src="lessons/animation5.html" frameborder="0" allowfullscreen></iframe>
+    </div>
 
-    <strong>Step 1: Light Sources</strong><br>
-    Light sources, such as lasers and ultraviolet lamps, emit light of specific wavelengths required for the lithography process.
+    <h2 class="bold">Exposure Systems and Light Sources</h2>
+    <p>Exposure systems are critical in photolithography, using various light sources to expose patterns on the wafer.</p>
 
-    <strong>Step 2: Collimation</strong><br>
-    The light is collimated and directed towards the photomask.
+    <h2 class="bold">Step 1: Light Sources</h2>
+    <p>Light sources, like lasers and ultraviolet lamps, emit specific wavelengths needed for lithography.</p>
 
-    <strong>Step 3: Mask Illumination</strong><br>
-    The collimated light passes through the photomask, which contains the pattern to be transferred.
+    <h2 class="bold">Step 2: Collimation</h2>
+    <p>The light is collimated and directed towards the photomask.</p>
 
-    <strong>Step 4: Projection and Exposure</strong><br>
-    The pattern is projected onto the wafer, exposing the photoresist and initiating the pattern transfer process.
+    <h2 class="bold">Step 3: Mask Illumination</h2>
+    <p>Collimated light passes through the photomask, containing the pattern to be transferred.</p>
 
-    <strong>Applications</strong><br>
-    Exposure systems are crucial in the fabrication of integrated circuits and advanced microelectronics.
+    <h2 class="bold">Step 4: Projection and Exposure</h2>
+    <p>The pattern is projected onto the wafer, exposing the photoresist and initiating pattern transfer.</p>
 
-    <strong>Note:</strong> The animation shown here is a simplified representation for educational purposes.
+    <h2 class="bold">Applications</h2>
+    <p>Exposure systems are crucial in integrated circuit fabrication and advanced microelectronics.</p>
+
+    <h2 class="bold">Note:</h2>
+    <p>The animation shown here is a simplified representation for educational purposes.</p>
   </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+  <!-- No JavaScript included in this version -->
 
 </body>
 </html>

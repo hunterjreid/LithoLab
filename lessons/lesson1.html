@@ -28,7 +28,7 @@
   </style>
 </head>
 <body>
-  <h1>Lesson 1: Introduction to Photolithography and Semiconductor Manufacturing</h1>
+  <h1>Lesson 1: Introduction to Photolithography</h1>
   
   <div id="animation-container">
     <h1 style="font-size: 16px;margin-bottom: 10px;">TLDR: <i>We explore the basics of photolithography and its role in semiconductor manufacturing.</i></h1>
@@ -93,12 +93,21 @@
     <h2 class="bold">Conclusion</h2>
     <p>Photolithography is a crucial process that enables the creation of intricate patterns on semiconductor wafers, forming the basis of modern electronics. As we delve deeper into this subject, we'll uncover the fascinating intricacies of each step and its role in shaping the technology that powers our world.</p>
         
-    <button style="margin-left: 0px; margin-top: 20px;">Scroll to Top</button>
+
 
 
 </div>
   
   <script>
+
+const scrollToTopButton = document.getElementById('scrollToTopButton');
+
+scrollToTopButton.addEventListener('click', function () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
     // Animation logic
     const animationContainer = document.getElementById('animation-container');
     const animationCanvas = document.getElementById('animation-canvas');

@@ -20,11 +20,13 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-
+  lessonContent
   mainWindow.titleBarOverlay = {
     color: '#FF0000',
   };
 }
+
+
 
 app.whenReady().then(() => {
   const loadingWindow = new BrowserWindow({

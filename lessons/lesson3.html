@@ -10,83 +10,75 @@
   </style>
 </head>
 <body>
-  <h1>Lesson 3: Advanced Photolithography Techniques</h1>
+  <h1>Lesson 3: Photolithography Techniques</h1>
   
   <div id="animation-container">
-    <h2 id="animation-title">Advanced Lithography Simulation</h2>
-    <iframe id="animation-iframe" width="600" height="400" src="lessons/animation3.html" frameborder="0" allowfullscreen></iframe>
-    <button onclick="goBack()">Back</button>
+    <h1 style="font-size: 16px;margin-bottom: 10px;">TLDR: <I>e explore advanced photolithography techniques and their applications in semiconductor manufacturing.</I></h1>
+    <div style="width: 100%;
+    display: flex;
+    justify-content: center;">
+        <iframe id="animation-iframe" width="600" height="400" src="lessons/animation3.html" frameborder="0" allowfullscreen></iframe>
+
+    </div>
+
+    <h1>Let's drive into it.</h1>
+
+
+
     <strong>Step 1: Double Patterning</strong><br>
     Double patterning involves splitting a complex pattern into two separate masks, each patterned with a simpler lithography process.
 
     <strong>Step 2: Immersion Lithography</strong><br>
     Immersion lithography uses a liquid medium between the lens and the wafer to enhance resolution, allowing smaller features to be printed.
 
-    <strong>Step 3: Extreme Ultraviolet Lithography (EUV)</strong><br>
-    EUV lithography uses extremely short wavelengths of light to achieve even finer resolution, enabling the production of advanced semiconductor devices.
-
-    <strong>Step 4: Nanoimprint Lithography</strong><br>
-    Nanoimprint lithography uses a template to physically imprint the pattern onto the photoresist, offering high resolution and cost-effective replication.
-
-    <strong>Step 5: Directed Self-Assembly</strong><br>
-    Directed self-assembly leverages molecular properties to guide the arrangement of block copolymers, creating precise patterns.
-
-    <strong>Step 6: Computational Lithography</strong><br>
-    Computational lithography involves using computer simulations to optimize mask designs and lithography processes for better pattern fidelity.
-
-    <strong>Step 7: Metrology and Inspection</strong><br>
-    Advanced techniques like scatterometry and electron microscopy are used for accurate measurement and inspection of patterns.
-
-    <strong>Step 8: Resolution Enhancement Techniques</strong><br>
-    Techniques like optical proximity correction (OPC) and phase-shifting masks further enhance pattern resolution.
-
-    <strong>Step 9: Sub-Resolution Assist Features (SRAFs)</strong><br>
-    SRAFs, smaller features added near main features, improve process latitude and reduce diffraction effects.
-
     <strong>Step 10: Multiple Patterning</strong><br>
     Multiple patterning splits patterns into simpler ones, achieving sub-resolution features.
 
     <strong>Step 11: Next-Generation Lithography</strong><br>
     Emerging technologies, such as nanolithography and DNA origami, offer innovative ways to achieve even smaller structures.
+
+    <strong>Step 1: Double Patterning</strong><br>
+    Double patterning involves splitting a complex pattern into two separate masks, each patterned with a simpler lithography process.
+
+    <p><strong>Step 10: Multiple Patterning</strong></p>
+    <p>Multiple patterning splits patterns into simpler ones, achieving sub-resolution features.</p>
+
+    <p><strong>Step 11: Next-Generation Lithography</strong></p>
+    <p>Emerging technologies, such as nanolithography and DNA origami, offer innovative ways to achieve even smaller structures.</p>
+
+    <p><strong>Step 1: Double Patterning</strong></p>
+    <p>Double patterning involves splitting a complex pattern into two separate masks, each patterned with a simpler lithography process.</p>
+
+    <p><strong>Step 2: Immersion Lithography</strong></p>
+    <p>Immersion lithography uses a liquid medium between the lens and the wafer to enhance resolution, allowing smaller features to be printed.</p>
+
+    <p><strong>Step 3: Extreme Ultraviolet Lithography (EUV)</strong></p>
+    <p>EUV lithography uses extremely short wavelengths of light to achieve even finer resolution, enabling the production of advanced semiconductor devices.</p>
+
+    <p><strong>Step 4: Nanoimprint Lithography</strong></p>
+    <p>Nanoimprint lithography uses a template to physically imprint the pattern onto the photoresist, offering high resolution and cost-effective replication.</p>
+
+    <p><strong>Step 5: Directed Self-Assembly</strong></p>
+    <p>Directed self-assembly leverages molecular properties to guide the arrangement of block copolymers, creating precise patterns.</p>
+
+    <p><strong>Step 6: Computational Lithography</strong></p>
+    <p>Computational lithography involves using computer simulations to optimize mask designs and lithography processes for better pattern fidelity.</p>
+
+    <p><strong>Step 7: Metrology and Inspection</strong></p>
+    <p>Advanced techniques like scatterometry and electron microscopy are used for accurate measurement and inspection of patterns.</p>
+
+    <p><strong>Step 8: Resolution Enhancement Techniques</strong></p>
+    <p>Techniques like optical proximity correction (OPC) and phase-shifting masks further enhance pattern resolution.</p>
+
+    <p><strong>Step 9: Sub-Resolution Assist Features (SRAFs)</strong></p>
+    <p>SRAFs, smaller features added near main features, improve process latitude and reduce diffraction effects.</p>
+
+    <p><strong>Step 10: Multiple Patterning</strong></p>
+    <p>Multiple patterning splits patterns into simpler ones, achieving sub-resolution features.</p>
+
+    <p><strong>Step 11: Next-Generation Lithography</strong></p>
+    <p>Emerging technologies, such as nanolithography and DNA origami, offer innovative ways to achieve even smaller structures.</p>
+ 
   </div>
-  
-  <script>
-    // Animation logic
-    const animationContainer = document.getElementById('animation-container');
-    const animationCanvas = document.getElementById('animation-canvas');
-    const animationTitle = document.getElementById('animation-title');
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, animationCanvas.width / animationCanvas.height, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: animationCanvas });
-    renderer.setSize(animationCanvas.width, animationCanvas.height);
-
-    const waferGeometry = new THREE.CircleGeometry(2, 32);
-    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
-    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
-    scene.add(wafer);
-
-    const patternGeometry = new THREE.CircleGeometry(1, 32);
-    const patternMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, transparent: true, opacity: 0.7 });
-    const pattern = new THREE.Mesh(patternGeometry, patternMaterial);
-    pattern.position.set(0, 0, 0.1);
-    scene.add(pattern);
-
-    const light = new THREE.SpotLight(0xffffff, 1, 10);
-    light.position.set(0, 0, 5);
-    scene.add(light);
-
-    camera.position.z = 8;
-
-    let isExposing = false;
-    let exposureTime = 0;
-
-    // Function to go back
-    function goBack() {
-      // Your goBack function implementation here
-    }
-
-    // Additional content (if needed)
-  </script>
 </body>
 </html>
