@@ -8,19 +8,36 @@
 </head>
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
   <script>
     // Set up the scene and camera
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
- 
-    // Create a rotating cube and add it to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 'red' });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
 
-    // Position the camera
-    camera.position.z = 5;
+    // Create a rotating cylinder
+    const cylinderGeometry = new THREE.CylinderGeometry(1, 1, 0.1, 32);
+    const cylinderMaterial = new THREE.MeshBasicMaterial({ color: 'darkgray' });
+    const cylinder = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
+    scene.add(cylinder);
+
+    // Create many small boxes
+    const boxGeometry = new THREE.BoxGeometry(0.05, 0.05, 0.05);
+    const boxMaterial = new THREE.MeshBasicMaterial({ color: 'blue', transparent: true, opacity: 0.5 });
+    const boxes = [];
+
+    for (let i = 0; i < 200; i++) {
+      const box = new THREE.Mesh(boxGeometry, boxMaterial);
+      const angle = (i / 200) * Math.PI * 2;
+      const radius = 3.2;
+
+      box.position.x = Math.cos(angle) * radius;
+      box.position.y = Math.sin(angle) * radius;
+      scene.add(box);
+      boxes.push(box);
+    }
+
+    // Position and set up the camera
+    camera.position.set(0, 2, 5);
 
     // Create a WebGLRenderer
     const renderer = new THREE.WebGLRenderer();
@@ -31,9 +48,14 @@
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate the cube
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // Rotate the cylinder and move the boxes around it
+      cylinder.rotation.y += 0.01;
+      boxes.forEach((box, index) => {
+        const angle = (index / 200) * Math.PI * 2;
+        const radius = 1.2;
+        box.position.x = Math.cos(angle + cylinder.rotation.y) * radius;
+        box.position.y = Math.sin(angle + cylinder.rotation.y) * radius;
+      });
 
       // Render using WebGLRenderer
       renderer.render(scene, camera);

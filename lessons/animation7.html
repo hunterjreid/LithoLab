@@ -9,11 +9,10 @@
 </head>
 <body>
 
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script>
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, 800 / 600, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer();
 
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -33,9 +32,16 @@
 
     camera.position.z = 5;
 
+    const zoomIn = () => {
+      camera.position.z -= 0.01;
+      camera.fov -= 0.1;
+      camera.updateProjectionMatrix();
+    };
+
     const animate = () => {
       requestAnimationFrame(animate);
       lightSource.position.x = Math.sin(Date.now() * 0.001) * 2;
+      zoomIn(); // Call the zoomIn function to continuously zoom in
       renderer.render(scene, camera);
     };
 

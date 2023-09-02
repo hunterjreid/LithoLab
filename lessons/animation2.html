@@ -13,11 +13,44 @@
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, 600 / 400, 0.1, 1000);
 
-    // Create a rotating cube and add it to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // Create cubes representing EUV and DUV lithography
+    const euvGeometry = new THREE.BoxGeometry();
+    const euvMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+    const euvCube = new THREE.Mesh(euvGeometry, euvMaterial);
+    euvCube.position.x = -2;
+    scene.add(euvCube);
+
+    const duvGeometry = new THREE.BoxGeometry();
+    const duvMaterial = new THREE.MeshBasicMaterial({ color: 0x0000ff });
+    const duvCube = new THREE.Mesh(duvGeometry, duvMaterial);
+    duvCube.position.x = 2;
+    scene.add(duvCube);
+
+    // Create labels for EUV and DUV
+    const euvLabel = createTextLabel("EUV");
+    const duvLabel = createTextLabel("DUV");
+    euvLabel.position.x = -2;
+    euvLabel.position.y = 1.5;
+    scene.add(euvLabel);
+    duvLabel.position.x = 2;
+    duvLabel.position.y = 1.5;
+    scene.add(duvLabel);
+
+    function createTextLabel(text) {
+      const canvas = document.createElement('canvas');
+      const context = canvas.getContext('2d');
+      context.font = 'Bold 40px Arial';
+      context.fillStyle = 'rgba(255,255,255,0.95)';
+      context.fillText(text, 0, 40);
+
+      const texture = new THREE.Texture(canvas);
+      texture.needsUpdate = true;
+
+      const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+      const sprite = new THREE.Sprite(spriteMaterial);
+      sprite.scale.set(2, 1, 1);
+      return sprite;
+    }
 
     // Position the camera
     camera.position.z = 5;
@@ -31,9 +64,11 @@
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate the cube
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      // Rotate the cubes
+      euvCube.rotation.x += 0.01;
+      euvCube.rotation.y += 0.01;
+      duvCube.rotation.x += 0.01;
+      duvCube.rotation.y += 0.01;
 
       // Render using WebGLRenderer
       renderer.render(scene, camera);

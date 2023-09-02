@@ -21,18 +21,34 @@
     light.position.set(1, 1, 1).normalize();
     scene.add(light);
 
-    const maskGeometry = new THREE.PlaneGeometry(4, 3);
-    const maskMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, side: THREE.DoubleSide });
-    const photomask = new THREE.Mesh(maskGeometry, maskMaterial);
-    photomask.position.z = -2;
-    scene.add(photomask);
+    const waferGeometry = new THREE.PlaneGeometry(4, 3);
+    const waferMaterial = new THREE.MeshPhongMaterial({ color: 0xff0000, side: THREE.DoubleSide });
+    const wafer = new THREE.Mesh(waferGeometry, waferMaterial);
+    wafer.position.z = -2;
+    scene.add(wafer);
+
+    const laserGeometry = new THREE.CylinderGeometry(0.05, 0.05, 2, 32);
+    const laserMaterial = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+    const laser = new THREE.Mesh(laserGeometry, laserMaterial);
+    laser.position.z = -1;
+    scene.add(laser);
 
     camera.position.z = 8;
 
+    let laserPosition = -1;
+
     const animate = () => {
       requestAnimationFrame(animate);
-      photomask.rotation.x += 0.005;
-      photomask.rotation.y += 0.005;
+
+      // Move the laser beam across the wafer
+      laser.position.x = Math.sin(laserPosition) * 2;
+      laser.position.y = Math.cos(laserPosition) * 2;
+
+      // Simulate etching by changing the wafer's appearance
+      waferMaterial.color.setRGB(1, 1, 1); // Change to white to simulate etching
+
+      laserPosition += 0.03;
+
       renderer.render(scene, camera);
     };
 
